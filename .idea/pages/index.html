@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title id="pageTitle">DueMate — Formalisez un prêt entre proches, sans malentendu</title>
+    <meta id="pageDesc" name="description" content="DueMate aide deux personnes à formaliser un prêt d'argent entre elles : accord écrit confirmé par les deux parties, remboursements suivis, en toute confiance.">
+    <meta name="theme-color" content="#0F2C4C">
+    <link rel="canonical" href="https://duemate.be/">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://duemate.be/">
+    <meta id="ogTitle" property="og:title" content="DueMate — Formalisez un prêt entre proches">
+    <meta id="ogDesc" property="og:description" content="Un accord écrit, confirmé par les deux parties, pour prêter de l'argent entre proches sans malentendu.">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root{
+            --navy:#0F2C4C;--navy-2:#1D4570;--coral:#FF6B4A;--coral-hover:#FF5A36;
+            --bg:#F5F6F8;--surface:#FFFFFF;--border:#E7EBF0;
+            --text:#0F2C4C;--muted:#6B7C92;--tint:#EAF0F6;
+            --ok:#1E7A5A;--ok-bg:#E4F4EC;
+            --shadow:0 1px 2px rgba(15,44,76,.04),0 12px 32px -12px rgba(15,44,76,.14);
+            --r-card:20px;--r-input:14px;--maxw:1080px;
+        }
+        @media (prefers-color-scheme:dark){
+            :root{
+                --bg:#0B1420;--surface:#16212F;--border:#29394D;
+                --text:#F2F5F8;--muted:#9AABBF;--tint:#1C2B3D;
+                --ok:#6FD3A8;--ok-bg:#15332A;
+                --shadow:0 1px 2px rgba(0,0,0,.3),0 16px 40px -16px rgba(0,0,0,.6);
+            }
+        }
+        *,*::before,*::after{box-sizing:border-box}
+        html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+        body{margin:0;background:var(--bg);color:var(--text);font-family:Manrope,system-ui,sans-serif;font-weight:400;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        h1,h2,h3{font-weight:800;line-height:1.2;letter-spacing:-.01em;margin:0}
+        p{margin:0}
+        a{color:var(--navy-2)}
+        @media (prefers-color-scheme:dark){a{color:#8FB4DD}}
+        img,svg{max-width:100%}
+        .wrap{max-width:var(--maxw);margin:0 auto;padding:0 16px}
+        .skip{position:absolute;left:16px;top:-60px;background:var(--navy);color:#fff;padding:10px 16px;border-radius:10px;z-index:100;transition:top .15s}
+        .skip:focus{top:8px}
+        :focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+
+        /* Header */
+        header.site{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+        .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;padding:8px 0}
+        .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:800;font-size:20px;letter-spacing:-.01em}
+        .brand svg{width:36px;height:36px;flex:none;display:block}
+        nav.primary{display:none;gap:24px}
+        nav.primary a{color:var(--text);text-decoration:none;font-size:15px;font-weight:600}
+        nav.primary a:hover{color:var(--coral)}
+        .lang{display:flex;gap:2px;border:1px solid var(--border);border-radius:999px;padding:3px;background:var(--surface);flex:none}
+        .lang button{font:inherit;font-size:13px;font-weight:600;border:0;background:none;border-radius:999px;min-height:32px;min-width:40px;padding:4px 8px;cursor:pointer;color:var(--muted)}
+        .lang button[aria-pressed="true"]{background:var(--navy);color:#fff}
+        @media (prefers-color-scheme:dark){.lang button[aria-pressed="true"]{background:var(--tint);color:var(--text)}}
+        @media (min-width:760px){nav.primary{display:flex}}
+
+        /* Reveal */
+        .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+        .reveal.in{opacity:1;transform:none}
+        @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+        /* Hero */
+        .hero{padding:44px 0 56px}
+        .hero-grid{display:grid;gap:36px;align-items:center}
+        @media (min-width:860px){.hero-grid{grid-template-columns:1.15fr .85fr;gap:56px}}
+        .hero h1{font-size:clamp(30px,6vw,46px)}
+        .hero .sub{color:var(--muted);font-size:18px;margin-top:16px;max-width:34em}
+        .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;align-items:center}
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:800;font-size:15px;border-radius:var(--r-input);padding:0 22px;min-height:50px;cursor:pointer;text-decoration:none;border:1px solid transparent}
+        .btn-primary{background:var(--coral);color:var(--navy)}
+        .btn-primary:hover{background:var(--coral-hover)}
+        .btn-ghost{background:var(--surface);border-color:var(--border);color:var(--text)}
+        .btn-ghost:hover{background:var(--tint)}
+        .btn-store[aria-disabled="true"]{opacity:.6;cursor:not-allowed;pointer-events:none}
+        .store-note{font-size:13px;color:var(--muted);margin-top:10px}
+
+        /* Card mock */
+        .card-mock{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);padding:24px;max-width:360px;margin-inline:auto;box-shadow:var(--shadow)}
+        .card-mock .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:8px}
+        .pill{font-size:12px;font-weight:800;background:var(--ok-bg);color:var(--ok);border-radius:999px;padding:5px 12px}
+        .card-mock .meta{font-size:13px;color:var(--muted)}
+        .card-mock .names{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--muted)}
+        .card-mock .names strong{color:var(--text);display:block;font-size:16px;font-weight:800}
+        .card-mock .amount{font-size:42px;font-weight:800;margin:16px 0;color:var(--text);letter-spacing:-.02em}
+        .card-mock .rows{margin:0}
+        .card-mock .rows div{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:10px 0;border-top:1px solid var(--border);color:var(--muted)}
+        .card-mock .rows dt{margin:0}
+        .card-mock .rows dd{margin:0;color:var(--text);font-weight:600}
+        .example{display:block;text-align:center;font-size:12px;color:var(--muted);margin-top:12px}
+
+        /* Band */
+        .band{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:36px 0}
+        .band .wrap{display:grid;gap:24px;grid-template-columns:1fr}
+        .benefit{display:flex;gap:14px;align-items:flex-start}
+        .benefit svg{flex:none;color:var(--coral)}
+        .benefit h3{font-size:16px}
+        .benefit p{color:var(--muted);font-size:14px;margin-top:4px}
+        @media (min-width:760px){.band .wrap{grid-template-columns:repeat(3,1fr)}}
+
+        /* Blocks */
+        section.block{padding:60px 0}
+        .kicker{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--navy-2);background:var(--tint);display:inline-block;padding:5px 12px;border-radius:999px;margin-bottom:14px}
+        @media (prefers-color-scheme:dark){.kicker{color:#8FB4DD}}
+        .block h2{font-size:clamp(25px,4.5vw,34px);max-width:22em}
+        .block .sub{color:var(--muted);margin-top:10px;max-width:40em}
+
+        .steps{list-style:none;margin:32px 0 0;padding:0;display:grid;gap:14px;grid-template-columns:1fr}
+        .step{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);padding:22px;display:flex;gap:16px;box-shadow:var(--shadow)}
+        .step .num{width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex:none}
+        @media (prefers-color-scheme:dark){.step .num{background:var(--coral);color:var(--navy)}}
+        .step h3{font-size:17px}
+        .step p{color:var(--muted);font-size:14.5px;margin-top:4px}
+        @media (min-width:760px){.steps{grid-template-columns:repeat(2,1fr)}}
+
+        .highlights{display:grid;gap:14px;grid-template-columns:1fr;margin-top:32px}
+        .hcard{border:1px solid var(--border);border-radius:var(--r-card);padding:22px;background:var(--surface)}
+        .hcard svg{color:var(--coral);margin-bottom:12px}
+        .hcard h3{font-size:17px}
+        .hcard p{color:var(--muted);font-size:14.5px;margin-top:6px}
+        @media (min-width:560px){.highlights{grid-template-columns:repeat(2,1fr)}}
+        @media (min-width:960px){.highlights{grid-template-columns:repeat(3,1fr)}}
+
+        .trust{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+        .trust ul{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:12px;grid-template-columns:1fr}
+        .trust li{display:flex;gap:10px;align-items:flex-start;font-size:15px}
+        .trust li svg{flex:none;color:var(--ok);margin-top:2px}
+        .trust .links{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 24px}
+        .trust .links a{font-weight:800}
+        @media (min-width:760px){.trust ul{grid-template-columns:repeat(2,1fr)}}
+
+        .faq{margin-top:28px;display:flex;flex-direction:column;gap:10px;max-width:760px}
+        details{border:1px solid var(--border);border-radius:var(--r-input);padding:4px 18px;background:var(--surface)}
+        summary{cursor:pointer;font-weight:600;padding:14px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+        summary::-webkit-details-marker{display:none}
+        summary::after{content:"+";font-size:22px;line-height:1;color:var(--muted)}
+        details[open] summary::after{content:"–"}
+        details p{color:var(--muted);padding-bottom:16px;margin:0;font-size:15px}
+
+        .final-cta{text-align:center;padding:64px 0;background:var(--navy);color:#fff}
+        .final-cta h2{font-size:clamp(25px,5vw,36px)}
+        .final-cta .sub{color:#B8C7DA;margin:12px auto 0;max-width:34em}
+        .final-cta .cta-row{justify-content:center}
+        .final-cta .btn-ghost{background:transparent;border-color:rgba(255,255,255,.35);color:#fff}
+        .final-cta .btn-ghost:hover{background:rgba(255,255,255,.08)}
+
+        /* Footer */
+        footer{border-top:1px solid var(--border);padding:36px 0 44px;font-size:14px;color:var(--muted)}
+        .foot-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px}
+        .foot-brand{display:flex;align-items:center;gap:10px;color:var(--text);font-weight:800;font-size:17px}
+        .foot-brand svg{width:28px;height:28px;display:block}
+        .foot-links{display:flex;flex-wrap:wrap;gap:10px 22px}
+        .foot-links a{color:var(--text);text-decoration:none;font-weight:600}
+        .foot-links a:hover{color:var(--coral);text-decoration:underline}
+        .disclaimer{max-width:46em;margin-top:6px}
+    </style>
+</head>
+
+<body>
+<a class="skip" href="#main" data-i18n="skip">Aller au contenu</a>
+
+<!-- Logo réutilisé (symbole) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+        <symbol id="logo" viewBox="0 0 512 512">
+            <rect width="512" height="512" rx="120" fill="#0F2C4C"/>
+            <circle cx="189" cy="256" r="74" fill="none" stroke="#FFFFFF" stroke-width="56"/>
+            <circle cx="322" cy="256" r="74" fill="none" stroke="#A2B9D4" stroke-width="56"/>
+        </symbol>
+    </defs>
+</svg>
+
+<header class="site">
+    <div class="wrap bar">
+        <a class="brand" href="/" aria-label="DueMate">
+            <svg aria-hidden="true"><use href="#logo"/></svg>
+            <span>DueMate</span>
+        </a>
+        <nav class="primary" aria-label="Navigation principale" data-i18n-aria="nav.label">
+            <a href="#how" data-i18n="nav.how">Comment ça marche</a>
+            <a href="#highlights" data-i18n="nav.highlights">Points forts</a>
+            <a href="#trust" data-i18n="nav.trust">Confidentialité</a>
+            <a href="#faq" data-i18n="nav.faq">FAQ</a>
+        </nav>
+        <div class="lang" id="langSwitch" role="group" aria-label="Langue">
+            <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+            <button type="button" data-lang="nl" aria-pressed="false">NL</button>
+            <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+    </div>
+</header>
+
+<main id="main">
+    <section class="hero">
+        <div class="wrap hero-grid">
+            <div>
+                <h1 data-i18n="hero.title">Formalisez un prêt entre proches, sans malentendu.</h1>
+                <p class="sub" data-i18n="hero.sub">DueMate transforme un prêt d'argent entre deux personnes en un accord écrit, confirmé par les deux parties, avec un suivi clair de chaque remboursement.</p>
+                <div class="cta-row">
+                    <!-- Quand l'app est publiée : remplacer href par le lien Google Play, retirer aria-disabled et changer le texte -->
+                    <a id="play-link" class="btn btn-primary btn-store" href="#" aria-disabled="true" role="button" data-i18n="hero.play">Bientôt sur Google Play</a>
+                    <a class="btn btn-ghost" href="mailto:privacy@duemate.be" data-i18n="hero.contact">Nous contacter</a>
+                </div>
+                <p class="store-note" data-i18n="hero.note">Application Android, bientôt disponible.</p>
+            </div>
+            <div class="reveal">
+                <div class="card-mock" aria-hidden="true">
+                    <div class="top">
+                        <span class="pill" data-i18n="card.confirmed">Confirmé</span>
+                        <span class="meta" data-i18n="card.installments">6 mensualités</span>
+                    </div>
+                    <div class="names">
+                        <span>Info<strong data-i18n="card.lender">prête</strong></span>
+                        <span style="text-align:right">DueMate<strong data-i18n="card.borrower">rembourse</strong></span>
+                    </div>
+                    <div class="amount">250 €</div>
+                    <dl class="rows">
+                        <div><dt data-i18n="card.method">Remise</dt><dd data-i18n="card.transfer">Virement</dd></div>
+                        <div><dt data-i18n="card.next">Prochaine échéance</dt><dd>15/12/2026</dd></div>
+                    </dl>
+                </div>
+                <span class="example" data-i18n="card.example">Exemple illustratif</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="band">
+        <div class="wrap">
+            <div class="benefit reveal">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>
+                <div><h3 data-i18n="band.b1t">Accord écrit</h3><p data-i18n="band.b1d">Montant, conditions et dates noir sur blanc, dans un accord PDF.</p></div>
+            </div>
+            <div class="benefit reveal">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <div><h3 data-i18n="band.b2t">Confirmé à deux</h3><p data-i18n="band.b2d">Personne ne peut modifier seul les conditions une fois acceptées.</p></div>
+            </div>
+            <div class="benefit reveal">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+                <div><h3 data-i18n="band.b3t">Suivi des remboursements</h3><p data-i18n="band.b3d">Chaque échéance est déclarée puis confirmée, jusqu'au solde final.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="block" id="how">
+        <div class="wrap">
+            <span class="kicker" data-i18n="how.kicker">Comment ça marche</span>
+            <h2 data-i18n="how.title">Quatre étapes, et tout est clair entre vous.</h2>
+            <ol class="steps">
+                <li class="step reveal"><span class="num">1</span><div><h3 data-i18n="how.s1t">Je propose un prêt</h3><p data-i18n="how.s1d">Montant, remise en espèces ou par virement, remboursement en une fois ou en mensualités.</p></div></li>
+                <li class="step reveal"><span class="num">2</span><div><h3 data-i18n="how.s2t">L'autre personne répond</h3><p data-i18n="how.s2d">Elle peut en discuter par message, puis confirme ou conteste la proposition.</p></div></li>
+                <li class="step reveal"><span class="num">3</span><div><h3 data-i18n="how.s3t">Un accord PDF est généré</h3><p data-i18n="how.s3d">Dès la confirmation, chacun reçoit l'accord dans sa propre langue.</p></div></li>
+                <li class="step reveal"><span class="num">4</span><div><h3 data-i18n="how.s4t">Chaque remboursement est suivi</h3><p data-i18n="how.s4d">Déclaré par l'un, confirmé par l'autre, jusqu'à ce que le prêt soit remboursé.</p></div></li>
+            </ol>
+            <!-- Captures d'écran : à ajouter ici quand les vraies captures sont prêtes -->
+        </div>
+    </section>
+
+    <section class="block" id="highlights" style="padding-top:0">
+        <div class="wrap">
+            <span class="kicker" data-i18n="hl.kicker">Points forts</span>
+            <h2 data-i18n="hl.title">Pensé pour la confiance entre proches.</h2>
+            <div class="highlights">
+                <article class="hcard reveal"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg><h3 data-i18n="hl.c1t">Accord PDF multilingue</h3><p data-i18n="hl.c1d">Dans la langue de chacun : français, néerlandais ou anglais.</p></article>
+                <article class="hcard reveal"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/></svg><h3 data-i18n="hl.c2t">Une fois ou en mensualités</h3><p data-i18n="hl.c2d">Chaque échéance est suivie individuellement jusqu'au solde final.</p></article>
+                <article class="hcard reveal"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg><h3 data-i18n="hl.c3t">Confirmation des deux côtés</h3><p data-i18n="hl.c3d">Aucune condition ne peut être changée unilatéralement.</p></article>
+                <article class="hcard reveal"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="7" r="4"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="m16 11 2 2 4-4"/></svg><h3 data-i18n="hl.c4t">Prêts entre contacts</h3><p data-i18n="hl.c4d">On ne prête qu'à des contacts que l'on a acceptés.</p></article>
+                <article class="hcard reveal"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><h3 data-i18n="hl.c5t">Trois langues</h3><p data-i18n="hl.c5d">L'application est disponible en français, néerlandais et anglais.</p></article>
+                <article class="hcard reveal"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><h3 data-i18n="hl.c6t">Vie privée respectée</h3><p data-i18n="hl.c6d">Vous pouvez supprimer votre compte à tout moment.</p></article>
+            </div>
+        </div>
+    </section>
+
+    <section class="trust block" id="trust">
+        <div class="wrap">
+            <span class="kicker" data-i18n="trust.kicker">Confiance et confidentialité</span>
+            <h2 data-i18n="trust.title">Vos données vous appartiennent.</h2>
+            <ul>
+                <li class="reveal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg><span data-i18n="trust.t1">Suppression du compte possible depuis l'application ou en ligne.</span></li>
+                <li class="reveal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg><span data-i18n="trust.t2">Aucune revente de données.</span></li>
+                <li class="reveal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg><span data-i18n="trust.t3">Pas de publicité.</span></li>
+                <li class="reveal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg><span data-i18n="trust.t4">Une question sur vos données ? Écrivez-nous.</span></li>
+            </ul>
+            <div class="links">
+                <a href="/privacy" data-i18n="trust.link">Lire la politique de confidentialité</a>
+                <a href="/delete-account" data-i18n="trust.delete">Supprimer mon compte</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="block" id="faq">
+        <div class="wrap">
+            <span class="kicker" data-i18n="faq.kicker">Questions fréquentes</span>
+            <h2 data-i18n="faq.title">Ce qu'il faut savoir</h2>
+            <div class="faq">
+                <details><summary data-i18n="faq.q1">DueMate transfère-t-il de l'argent ?</summary><p data-i18n="faq.a1">Non. DueMate n'est pas une banque et ne transfère jamais d'argent entre les comptes. L'application sert uniquement à formaliser et suivre un accord entre deux personnes.</p></details>
+                <details><summary data-i18n="faq.q2">L'accord PDF a-t-il une valeur légale ?</summary><p data-i18n="faq.a2">L'accord PDF est une trace écrite et partagée des conditions convenues entre les deux parties. Ce n'est pas un conseil juridique ; en cas de doute, consultez un professionnel.</p></details>
+                <details><summary data-i18n="faq.q3">Que se passe-t-il si l'autre personne conteste ?</summary><p data-i18n="faq.a3">Si la proposition est contestée, elle n'est pas confirmée et aucun accord n'est généré. Les deux personnes peuvent en discuter avant de proposer de nouvelles conditions.</p></details>
+                <details><summary data-i18n="faq.q4">Puis-je supprimer mon compte ?</summary><p data-i18n="faq.a4">Oui, à tout moment depuis l'application, dans les paramètres du compte, ou en ligne depuis la page « Supprimer mon compte ».</p></details>
+                <details><summary data-i18n="faq.q5">Dans quelles langues l'application est-elle disponible ?</summary><p data-i18n="faq.a5">Français, néerlandais et anglais.</p></details>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <div class="wrap">
+            <h2 data-i18n="finalcta.title">Prêtez entre proches, en toute clarté.</h2>
+            <p class="sub" data-i18n="finalcta.sub">DueMate arrive bientôt sur Google Play.</p>
+            <div class="cta-row">
+                <a class="btn btn-primary btn-store" href="#" aria-disabled="true" role="button" data-i18n="hero.play">Bientôt sur Google Play</a>
+                <a class="btn btn-ghost" href="mailto:privacy@duemate.be" data-i18n="hero.contact">Nous contacter</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="wrap">
+        <div class="foot-top">
+            <div class="foot-brand"><svg aria-hidden="true"><use href="#logo"/></svg><span>DueMate</span></div>
+            <nav class="foot-links" aria-label="Liens légaux" data-i18n-aria="foot.label">
+                <a href="/privacy" data-i18n="foot.privacy">Politique de confidentialité</a>
+                <a href="/terms" data-i18n="foot.terms">Conditions d'utilisation</a>
+                <a href="/delete-account" data-i18n="foot.delete">Supprimer mon compte</a>
+                <a href="mailto:privacy@duemate.be">privacy@duemate.be</a>
+            </nav>
+        </div>
+        <p>© <span id="year"></span> DueMate</p>
+        <p class="disclaimer" data-i18n="foot.disclaimer">DueMate n'est pas une banque et ne fournit pas de conseil juridique ou financier.</p>
+    </div>
+</footer>
+
+<script>
+    var I18N = {
+        fr: {
+            "pageTitle":"DueMate — Formalisez un prêt entre proches, sans malentendu",
+            "pageDesc":"DueMate aide deux personnes à formaliser un prêt d'argent entre elles : accord écrit confirmé par les deux parties, remboursements suivis, en toute confiance.",
+            "skip":"Aller au contenu","nav.how":"Comment ça marche","nav.highlights":"Points forts","nav.trust":"Confidentialité","nav.faq":"FAQ","nav.label":"Navigation principale",
+            "hero.title":"Formalisez un prêt entre proches, sans malentendu.",
+            "hero.sub":"DueMate transforme un prêt d'argent entre deux personnes en un accord écrit, confirmé par les deux parties, avec un suivi clair de chaque remboursement.",
+            "hero.play":"Bientôt sur Google Play","hero.contact":"Nous contacter","hero.note":"Application Android, bientôt disponible.",
+            "card.confirmed":"Confirmé","card.installments":"6 mensualités","card.lender":"prête","card.borrower":"rembourse","card.method":"Remise","card.transfer":"Virement","card.next":"Prochaine échéance","card.example":"Exemple illustratif",
+            "band.b1t":"Accord écrit","band.b1d":"Montant, conditions et dates noir sur blanc, dans un accord PDF.",
+            "band.b2t":"Confirmé à deux","band.b2d":"Personne ne peut modifier seul les conditions une fois acceptées.",
+            "band.b3t":"Suivi des remboursements","band.b3d":"Chaque échéance est déclarée puis confirmée, jusqu'au solde final.",
+            "how.kicker":"Comment ça marche","how.title":"Quatre étapes, et tout est clair entre vous.",
+            "how.s1t":"Je propose un prêt","how.s1d":"Montant, remise en espèces ou par virement, remboursement en une fois ou en mensualités.",
+            "how.s2t":"L'autre personne répond","how.s2d":"Elle peut en discuter par message, puis confirme ou conteste la proposition.",
+            "how.s3t":"Un accord PDF est généré","how.s3d":"Dès la confirmation, chacun reçoit l'accord dans sa propre langue.",
+            "how.s4t":"Chaque remboursement est suivi","how.s4d":"Déclaré par l'un, confirmé par l'autre, jusqu'à ce que le prêt soit remboursé.",
+            "hl.kicker":"Points forts","hl.title":"Pensé pour la confiance entre proches.",
+            "hl.c1t":"Accord PDF multilingue","hl.c1d":"Dans la langue de chacun : français, néerlandais ou anglais.",
+            "hl.c2t":"Une fois ou en mensualités","hl.c2d":"Chaque échéance est suivie individuellement jusqu'au solde final.",
+            "hl.c3t":"Confirmation des deux côtés","hl.c3d":"Aucune condition ne peut être changée unilatéralement.",
+            "hl.c4t":"Prêts entre contacts","hl.c4d":"On ne prête qu'à des contacts que l'on a acceptés.",
+            "hl.c5t":"Trois langues","hl.c5d":"L'application est disponible en français, néerlandais et anglais.",
+            "hl.c6t":"Vie privée respectée","hl.c6d":"Vous pouvez supprimer votre compte à tout moment.",
+            "trust.kicker":"Confiance et confidentialité","trust.title":"Vos données vous appartiennent.",
+            "trust.t1":"Suppression du compte possible depuis l'application ou en ligne.","trust.t2":"Aucune revente de données.","trust.t3":"Pas de publicité.","trust.t4":"Une question sur vos données ? Écrivez-nous.",
+            "trust.link":"Lire la politique de confidentialité","trust.delete":"Supprimer mon compte",
+            "faq.kicker":"Questions fréquentes","faq.title":"Ce qu'il faut savoir",
+            "faq.q1":"DueMate transfère-t-il de l'argent ?","faq.a1":"Non. DueMate n'est pas une banque et ne transfère jamais d'argent entre les comptes. L'application sert uniquement à formaliser et suivre un accord entre deux personnes.",
+            "faq.q2":"L'accord PDF a-t-il une valeur légale ?","faq.a2":"L'accord PDF est une trace écrite et partagée des conditions convenues entre les deux parties. Ce n'est pas un conseil juridique ; en cas de doute, consultez un professionnel.",
+            "faq.q3":"Que se passe-t-il si l'autre personne conteste ?","faq.a3":"Si la proposition est contestée, elle n'est pas confirmée et aucun accord n'est généré. Les deux personnes peuvent en discuter avant de proposer de nouvelles conditions.",
+            "faq.q4":"Puis-je supprimer mon compte ?","faq.a4":"Oui, à tout moment depuis l'application, dans les paramètres du compte, ou en ligne depuis la page « Supprimer mon compte ».",
+            "faq.q5":"Dans quelles langues l'application est-elle disponible ?","faq.a5":"Français, néerlandais et anglais.",
+            "finalcta.title":"Prêtez entre proches, en toute clarté.","finalcta.sub":"DueMate arrive bientôt sur Google Play.",
+            "foot.privacy":"Politique de confidentialité","foot.terms":"Conditions d'utilisation","foot.delete":"Supprimer mon compte","foot.label":"Liens légaux",
+            "foot.disclaimer":"DueMate n'est pas une banque et ne fournit pas de conseil juridique ou financier."
+        },
+        nl: {
+            "pageTitle":"DueMate — Leg een lening tussen naasten vast, zonder misverstand",
+            "pageDesc":"DueMate helpt twee personen om een geldlening tussen hen vast te leggen: een schriftelijke overeenkomst die beide partijen bevestigen, met opvolging van elke terugbetaling.",
+            "skip":"Naar de inhoud","nav.how":"Hoe het werkt","nav.highlights":"Troeven","nav.trust":"Privacy","nav.faq":"FAQ","nav.label":"Hoofdnavigatie",
+            "hero.title":"Leg een lening tussen naasten vast, zonder misverstand.",
+            "hero.sub":"DueMate maakt van een geldlening tussen twee personen een schriftelijke overeenkomst, bevestigd door beide partijen, met duidelijke opvolging van elke terugbetaling.",
+            "hero.play":"Binnenkort op Google Play","hero.contact":"Contacteer ons","hero.note":"Android-app, binnenkort beschikbaar.",
+            "card.confirmed":"Bevestigd","card.installments":"6 termijnen","card.lender":"leent uit","card.borrower":"betaalt terug","card.method":"Overhandiging","card.transfer":"Overschrijving","card.next":"Volgende vervaldag","card.example":"Illustratief voorbeeld",
+            "band.b1t":"Schriftelijke overeenkomst","band.b1d":"Bedrag, voorwaarden en data zwart op wit, in een pdf-overeenkomst.",
+            "band.b2t":"Door beiden bevestigd","band.b2d":"Niemand kan de voorwaarden alleen wijzigen eens ze aanvaard zijn.",
+            "band.b3t":"Opvolging van terugbetalingen","band.b3d":"Elke termijn wordt gemeld en bevestigd, tot het volledige saldo.",
+            "how.kicker":"Hoe het werkt","how.title":"Vier stappen, en alles is duidelijk tussen jullie.",
+            "how.s1t":"Ik stel een lening voor","how.s1d":"Bedrag, cash of overschrijving, terugbetaling ineens of in termijnen.",
+            "how.s2t":"De ander antwoordt","how.s2d":"Kan erover chatten, en bevestigt of betwist het voorstel.",
+            "how.s3t":"Een PDF-overeenkomst wordt gemaakt","how.s3d":"Zodra bevestigd, ontvangt elke partij de overeenkomst in de eigen taal.",
+            "how.s4t":"Elke terugbetaling wordt opgevolgd","how.s4d":"Gemeld door de ene, bevestigd door de andere, tot de lening is terugbetaald.",
+            "hl.kicker":"Troeven","hl.title":"Gemaakt voor vertrouwen tussen naasten.",
+            "hl.c1t":"Meertalige PDF-overeenkomst","hl.c1d":"In de taal van elke partij: Frans, Nederlands of Engels.",
+            "hl.c2t":"Ineens of in termijnen","hl.c2d":"Elke vervaldag wordt apart opgevolgd tot het laatste saldo.",
+            "hl.c3t":"Bevestiging langs beide kanten","hl.c3d":"Geen enkele voorwaarde kan eenzijdig gewijzigd worden.",
+            "hl.c4t":"Lenen tussen contacten","hl.c4d":"Je leent alleen uit aan contacten die je hebt aanvaard.",
+            "hl.c5t":"Drie talen","hl.c5d":"De app is beschikbaar in het Frans, Nederlands en Engels.",
+            "hl.c6t":"Privacy gerespecteerd","hl.c6d":"Je kan je account op elk moment verwijderen.",
+            "trust.kicker":"Vertrouwen en privacy","trust.title":"Jouw gegevens blijven van jou.",
+            "trust.t1":"Account verwijderbaar vanuit de app of online.","trust.t2":"Geen doorverkoop van gegevens.","trust.t3":"Geen reclame.","trust.t4":"Een vraag over je gegevens? Schrijf ons.",
+            "trust.link":"Lees het privacybeleid","trust.delete":"Mijn account verwijderen",
+            "faq.kicker":"Veelgestelde vragen","faq.title":"Wat je moet weten",
+            "faq.q1":"Verwerkt DueMate geldtransfers?","faq.a1":"Nee. DueMate is geen bank en verplaatst nooit geld tussen rekeningen. De app dient enkel om een afspraak tussen twee personen vast te leggen en op te volgen.",
+            "faq.q2":"Heeft de PDF-overeenkomst juridische waarde?","faq.a2":"De PDF-overeenkomst is een geschreven, gedeelde trace van de afgesproken voorwaarden. Het is geen juridisch advies; raadpleeg bij twijfel een professional.",
+            "faq.q3":"Wat als de andere persoon het betwist?","faq.a3":"Bij betwisting wordt het voorstel niet bevestigd en ontstaat er geen overeenkomst. Beide personen kunnen erover praten en nieuwe voorwaarden voorstellen.",
+            "faq.q4":"Kan ik mijn account verwijderen?","faq.a4":"Ja, op elk moment vanuit de accountinstellingen in de app, of online via de pagina « Mijn account verwijderen ».",
+            "faq.q5":"In welke talen is de app beschikbaar?","faq.a5":"Frans, Nederlands en Engels.",
+            "finalcta.title":"Leen tussen naasten, in alle duidelijkheid.","finalcta.sub":"DueMate komt binnenkort naar Google Play.",
+            "foot.privacy":"Privacybeleid","foot.terms":"Gebruiksvoorwaarden","foot.delete":"Mijn account verwijderen","foot.label":"Juridische links",
+            "foot.disclaimer":"DueMate is geen bank en biedt geen juridisch of financieel advies."
+        },
+        en: {
+            "pageTitle":"DueMate — Formalize a loan between people you trust, with no misunderstanding",
+            "pageDesc":"DueMate helps two people formalize a money loan between them: a written agreement both parties confirm, with clear tracking of every repayment.",
+            "skip":"Skip to content","nav.how":"How it works","nav.highlights":"Highlights","nav.trust":"Privacy","nav.faq":"FAQ","nav.label":"Main navigation",
+            "hero.title":"Formalize a loan between people you trust, with no misunderstanding.",
+            "hero.sub":"DueMate turns a money loan between two people into a written agreement, confirmed by both parties, with clear tracking of every repayment.",
+            "hero.play":"Coming soon to Google Play","hero.contact":"Contact us","hero.note":"Android app, coming soon.",
+            "card.confirmed":"Confirmed","card.installments":"6 instalments","card.lender":"lends","card.borrower":"repays","card.method":"Handed over by","card.transfer":"Bank transfer","card.next":"Next due date","card.example":"Illustrative example",
+            "band.b1t":"Written agreement","band.b1d":"Amount, terms and dates in black and white, in a PDF agreement.",
+            "band.b2t":"Confirmed by both","band.b2d":"No one can change the terms alone once they're accepted.",
+            "band.b3t":"Repayments tracked","band.b3d":"Each instalment is declared and confirmed, until the balance is settled.",
+            "how.kicker":"How it works","how.title":"Four steps, and you're both on the same page.",
+            "how.s1t":"I propose a loan","how.s1d":"Amount, handed over in cash or by transfer, repaid in one go or in instalments.",
+            "how.s2t":"The other person replies","how.s2d":"They can discuss it by message, then confirm or dispute the proposal.",
+            "how.s3t":"A PDF agreement is generated","how.s3d":"Once confirmed, each person receives the agreement in their own language.",
+            "how.s4t":"Every repayment is tracked","how.s4d":"Declared by one, confirmed by the other, until the loan is repaid.",
+            "hl.kicker":"Highlights","hl.title":"Built for trust between people who know each other.",
+            "hl.c1t":"Multilingual PDF agreement","hl.c1d":"In each person's own language: French, Dutch or English.",
+            "hl.c2t":"One payment or instalments","hl.c2d":"Each due date is tracked individually until the final balance.",
+            "hl.c3t":"Confirmed on both sides","hl.c3d":"No term can be changed by just one person.",
+            "hl.c4t":"Loans between contacts","hl.c4d":"You only lend to contacts you've accepted.",
+            "hl.c5t":"Three languages","hl.c5d":"The app is available in French, Dutch and English.",
+            "hl.c6t":"Privacy respected","hl.c6d":"You can delete your account at any time.",
+            "trust.kicker":"Trust and privacy","trust.title":"Your data stays yours.",
+            "trust.t1":"Account deletion available in the app or online.","trust.t2":"No data is ever sold.","trust.t3":"No ads.","trust.t4":"A question about your data? Write to us.",
+            "trust.link":"Read the privacy policy","trust.delete":"Delete my account",
+            "faq.kicker":"Frequently asked questions","faq.title":"What you need to know",
+            "faq.q1":"Does DueMate transfer money?","faq.a1":"No. DueMate is not a bank and never moves money between accounts. The app only formalizes and tracks an agreement between two people.",
+            "faq.q2":"Is the PDF agreement legally binding?","faq.a2":"The PDF agreement is a written, shared record of the terms both parties agreed to. It is not legal advice; consult a professional if in doubt.",
+            "faq.q3":"What happens if the other person disputes it?","faq.a3":"If disputed, the proposal isn't confirmed and no agreement is generated. Both people can discuss it and propose new terms.",
+            "faq.q4":"Can I delete my account?","faq.a4":"Yes, at any time from the account settings in the app, or online from the “Delete my account” page.",
+            "faq.q5":"What languages is the app available in?","faq.a5":"French, Dutch and English.",
+            "finalcta.title":"Lend between people you trust, with total clarity.","finalcta.sub":"DueMate is coming soon to Google Play.",
+            "foot.privacy":"Privacy policy","foot.terms":"Terms of use","foot.delete":"Delete my account","foot.label":"Legal links",
+            "foot.disclaimer":"DueMate is not a bank and does not provide legal or financial advice."
+        }
+    };
+
+    function getStoredLang(){ try { return localStorage.getItem('duemate_lang'); } catch(e){ return null; } }
+    function setStoredLang(l){ try { localStorage.setItem('duemate_lang', l); } catch(e){} }
+
+    function detectLang(){
+        var stored = getStoredLang();
+        if (stored && I18N[stored]) return stored;
+        var nav = (navigator.language || 'fr').slice(0,2).toLowerCase();
+        return I18N[nav] ? nav : 'fr';
+    }
+
+    function applyLang(lang){
+        var dict = I18N[lang] || I18N.fr;
+        document.documentElement.lang = lang;
+        document.title = dict['pageTitle'];
+        document.getElementById('pageDesc').setAttribute('content', dict['pageDesc']);
+        document.getElementById('ogTitle').setAttribute('content', dict['pageTitle']);
+        document.getElementById('ogDesc').setAttribute('content', dict['pageDesc']);
+        var nodes = document.querySelectorAll('[data-i18n]');
+        for (var i=0;i<nodes.length;i++){
+            var key = nodes[i].getAttribute('data-i18n');
+            if (dict[key]) nodes[i].textContent = dict[key];
+        }
+        var aria = document.querySelectorAll('[data-i18n-aria]');
+        for (var k=0;k<aria.length;k++){
+            var ak = aria[k].getAttribute('data-i18n-aria');
+            if (dict[ak]) aria[k].setAttribute('aria-label', dict[ak]);
+        }
+        var btns = document.querySelectorAll('#langSwitch button');
+        for (var j=0;j<btns.length;j++){
+            btns[j].setAttribute('aria-pressed', String(btns[j].getAttribute('data-lang')===lang));
+        }
+        setStoredLang(lang);
+    }
+
+    document.getElementById('langSwitch').addEventListener('click', function(e){
+        var b = e.target.closest('button[data-lang]');
+        if (b) applyLang(b.getAttribute('data-lang'));
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    applyLang(detectLang());
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function(entries){
+            entries.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+        }, {threshold:0.15});
+        document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+    } else {
+        document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+    }
+</script>
+</body>
+</html>

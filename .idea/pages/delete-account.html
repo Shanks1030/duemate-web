@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Delete my DueMate account</title>
+    <meta name="description" content="How to delete your DueMate account, what is erased and what is kept.">
+    <meta name="theme-color" content="#F5F6F8" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0B1420" media="(prefers-color-scheme: dark)">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <style>
+        :root{
+            --navy:#0F2C4C;--navy-2:#1D4570;--coral:#FF6B4A;--coral-hover:#FF5A36;
+            --bg:#F5F6F8;--surface:#FFFFFF;--border:#E7EBF0;
+            --text:#0F2C4C;--muted:#6B7C92;--tint:#EAF0F6;
+            --ok:#1E7A5A;--ok-bg:#E4F4EC;--warn:#8A5A12;--warn-bg:#FBF1DE;--err:#B3261E;
+            --shadow:0 1px 2px rgba(15,44,76,.04),0 12px 32px -12px rgba(15,44,76,.14);
+            --r-card:20px;--r-input:14px;
+            color-scheme:light dark;
+        }
+        @media (prefers-color-scheme:dark){
+            :root{
+                --bg:#0B1420;--surface:#16212F;--border:#29394D;
+                --text:#F2F5F8;--muted:#9AABBF;--tint:#1C2B3D;
+                --ok:#6FD3A8;--ok-bg:#15332A;--warn:#F0C27A;--warn-bg:#3A2D17;--err:#FF9A8C;
+                --shadow:0 1px 2px rgba(0,0,0,.3),0 16px 40px -16px rgba(0,0,0,.6);
+            }
+        }
+        *,*::before,*::after{box-sizing:border-box}
+        html{-webkit-text-size-adjust:100%}
+        body{margin:0;background:var(--bg);color:var(--text);font-family:Manrope,system-ui,sans-serif;font-weight:400;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+        a{color:var(--text);text-decoration-color:var(--muted);text-underline-offset:3px}
+        a:hover{color:var(--navy-2)}
+        h1,h2,h3{margin:0;font-weight:800;line-height:1.15;letter-spacing:-.02em;text-wrap:balance}
+        p{margin:0;text-wrap:pretty}
+        :focus-visible{outline:2px solid var(--coral);outline-offset:3px;border-radius:8px}
+        .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+        /* Header (identique à la page d'accueil) */
+        header.site{position:sticky;top:0;z-index:10;background:color-mix(in oklab,var(--bg) 88%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+        header.site.scrolled{border-bottom-color:var(--border)}
+        .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+        .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em;text-decoration:none;color:var(--text)}
+        .brand:hover{color:var(--text)}
+        .mark{width:30px;height:30px;border-radius:9px;background:var(--navy);position:relative;flex:none}
+        .mark::before,.mark::after{content:"";position:absolute;top:9px;width:12px;height:12px;border-radius:50%;border:2px solid #fff}
+        .mark::before{left:5px}.mark::after{right:5px;border-color:#9FB8D4}
+        @media (prefers-color-scheme:dark){.mark{background:var(--navy-2)}}
+        .lang{display:flex;gap:2px;padding:3px;border:1px solid var(--border);border-radius:999px;background:var(--surface)}
+        .lang button{font:inherit;font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--muted);background:none;border:0;border-radius:999px;padding:5px 11px;min-height:32px;cursor:pointer;transition:background .15s,color .15s}
+        .lang button:hover{color:var(--text)}
+        .lang button[aria-pressed="true"]{background:var(--tint);color:var(--text)}
+
+        /* Page */
+        main{padding:40px 0 72px}
+        .narrow{max-width:760px}
+        .kicker{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+        h1{font-size:clamp(30px,6vw,46px);margin-bottom:16px}
+        .lead{font-size:18px;color:var(--muted)}
+        h2{font-size:clamp(21px,3.5vw,26px);margin:48px 0 16px}
+        .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);padding:24px;box-shadow:var(--shadow)}
+        .card + .card{margin-top:16px}
+        .card h3{font-size:18px;letter-spacing:-.01em;margin-bottom:10px}
+        .card p{color:var(--muted);font-size:15px}
+        .card p + p{margin-top:10px}
+        .card ol,.card ul{margin:10px 0 0;padding-left:22px;font-size:15px}
+        .card li+li{margin-top:6px}
+        .cta{display:inline-block;margin-top:16px;font:inherit;font-weight:800;font-size:16px;color:#0F2C4C;background:var(--coral);border-radius:var(--r-input);padding:14px 24px;text-decoration:none;transition:background .15s}
+        .cta:hover{background:var(--coral-hover);color:#0F2C4C}
+        .notice{margin-top:16px;border-radius:var(--r-card);padding:20px 24px;background:var(--warn-bg);color:var(--warn);font-size:15px}
+        .notice strong{font-weight:800}
+        .card.kept{background:var(--tint);box-shadow:none}
+
+        /* Footer */
+        footer{border-top:1px solid var(--border);padding:40px 0 48px;font-size:14px;color:var(--muted)}
+        .foot-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center}
+        @media (min-width:640px){.wrap{padding:0 32px}}
+        @media (min-width:960px){main{padding:72px 0 104px}}
+        @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+    </style>
+</head>
+<body>
+
+<header class="site" id="top">
+    <div class="wrap bar">
+        <a class="brand" href="/" aria-label="DueMate"><span class="mark" aria-hidden="true"></span>DueMate</a>
+        <nav class="lang" aria-label="Language" id="lang">
+            <button type="button" data-lang="fr" lang="fr">FR</button>
+            <button type="button" data-lang="nl" lang="nl">NL</button>
+            <button type="button" data-lang="en" lang="en">EN</button>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="wrap narrow">
+        <p class="kicker" data-i18n="kicker"></p>
+        <h1 data-i18n="title"></h1>
+        <p class="lead" data-i18n="lead"></p>
+
+        <h2 data-i18n="how.title"></h2>
+
+        <section class="card">
+            <h3 data-i18n="app.t"></h3>
+            <ol>
+                <li data-i18n="app.s1"></li>
+                <li data-i18n="app.s2"></li>
+                <li data-i18n="app.s3"></li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h3 data-i18n="mail.t"></h3>
+            <p data-i18n="mail.d"></p>
+            <a class="cta" id="mailto" href="mailto:privacy@duemate.be">privacy@duemate.be</a>
+        </section>
+
+        <p class="notice"><strong data-i18n="notice.label"></strong> <span data-i18n="notice.text"></span></p>
+
+        <h2 data-i18n="erased.title"></h2>
+        <section class="card">
+            <ul>
+                <li data-i18n="erased.i1"></li>
+                <li data-i18n="erased.i2"></li>
+                <li data-i18n="erased.i3"></li>
+                <li data-i18n="erased.i4"></li>
+                <li data-i18n="erased.i5"></li>
+            </ul>
+        </section>
+
+        <h2 data-i18n="kept.title"></h2>
+        <section class="card kept">
+            <p data-i18n="kept.intro"></p>
+            <ul>
+                <li data-i18n="kept.i1"></li>
+                <li data-i18n="kept.i2"></li>
+                <li data-i18n="kept.i3"></li>
+            </ul>
+            <p><span data-i18n="kept.outro"></span> <a href="/privacy" data-i18n="kept.link"></a></p>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="wrap foot-row">
+        <span>© <span id="year"></span> DueMate</span>
+        <span><span data-i18n="footer.question"></span> <a href="mailto:privacy@duemate.be">privacy@duemate.be</a></span>
+    </div>
+</footer>
+
+<script>
+    const COPY = {
+        en: {
+            meta: { title: 'Delete my DueMate account', description: 'How to delete your DueMate account, what is erased and what is kept.' },
+            kicker: 'Your account',
+            title: 'Delete my DueMate account',
+            lead: 'You can delete your account at any time, from the app or by email.',
+            how: { title: 'Two ways to delete your account' },
+            app: { t: '1. From the app (fastest)', s1: 'Open DueMate and go to Profile.', s2: 'Tap “Delete my account”.', s3: 'Confirm. Your account is deleted immediately and you are signed out.' },
+            mail: { t: '2. By email, without the app', d: 'Write to us from the email address of your account with the subject “Account deletion”. We process your request within 30 days.', subject: 'Account deletion' },
+            notice: { label: 'Please note:', text: 'deletion is not possible while you have an active loan, so close it first. Deletion is permanent and cannot be undone.' },
+            erased: { title: 'What is erased',
+                i1: 'Your first and last name (replaced by “Deleted user”)',
+                i2: 'Your email address and your sign-in account',
+                i3: 'Your connect code and your identity verification status',
+                i4: 'Your contacts',
+                i5: 'Your pending loan requests (they are cancelled)' },
+            kept: { title: 'What is kept',
+                intro: 'DueMate records an agreement between two people. So that the other person keeps a record of what was agreed, some data is retained:',
+                i1: 'Loans and their PDF documents, which remain available to the other party',
+                i2: 'Closed loan requests',
+                i3: 'The history of your acceptance of the terms of use',
+                outro: 'This data is no longer linked to an active account. More details in our', link: 'privacy policy.' },
+            footer: { question: 'Questions?' }
+        },
+        fr: {
+            meta: { title: 'Supprimer mon compte DueMate', description: 'Comment supprimer votre compte DueMate, ce qui est effacé et ce qui est conservé.' },
+            kicker: 'Votre compte',
+            title: 'Supprimer mon compte DueMate',
+            lead: 'Vous pouvez supprimer votre compte à tout moment, depuis l’application ou par e-mail.',
+            how: { title: 'Deux façons de supprimer votre compte' },
+            app: { t: '1. Depuis l’application (le plus rapide)', s1: 'Ouvrez DueMate et allez dans Profil.', s2: 'Appuyez sur « Supprimer mon compte ».', s3: 'Confirmez. Votre compte est supprimé immédiatement et vous êtes déconnecté.' },
+            mail: { t: '2. Par e-mail, sans l’application', d: 'Écrivez-nous depuis l’adresse e-mail de votre compte, avec pour objet « Suppression de compte ». Nous traitons votre demande dans un délai maximum de 30 jours.', subject: 'Suppression de compte' },
+            notice: { label: 'À noter :', text: 'la suppression est impossible tant que vous avez un prêt actif, clôturez-le d’abord. La suppression est définitive et ne peut pas être annulée.' },
+            erased: { title: 'Ce qui est supprimé',
+                i1: 'Votre nom et votre prénom (remplacés par « Deleted user »)',
+                i2: 'Votre adresse e-mail et votre compte de connexion',
+                i3: 'Votre code de connexion et votre statut de vérification d’identité',
+                i4: 'Vos contacts',
+                i5: 'Vos demandes de prêt en attente (elles sont annulées)' },
+            kept: { title: 'Ce qui est conservé',
+                intro: 'DueMate consigne un accord entre deux personnes. Pour que l’autre partie garde la trace de ce qui a été convenu, certaines données sont conservées :',
+                i1: 'Les prêts et leurs documents PDF, qui restent accessibles à l’autre partie',
+                i2: 'Les demandes de prêt clôturées',
+                i3: 'L’historique de votre acceptation des conditions d’utilisation',
+                outro: 'Ces données ne sont plus rattachées à un compte actif. Plus de détails dans notre', link: 'politique de confidentialité.' },
+            footer: { question: 'Une question ?' }
+        },
+        nl: {
+            meta: { title: 'Mijn DueMate-account verwijderen', description: 'Hoe je je DueMate-account verwijdert, wat gewist wordt en wat bewaard blijft.' },
+            kicker: 'Je account',
+            title: 'Mijn DueMate-account verwijderen',
+            lead: 'Je kunt je account op elk moment verwijderen, via de app of per e-mail.',
+            how: { title: 'Twee manieren om je account te verwijderen' },
+            app: { t: '1. In de app (het snelst)', s1: 'Open DueMate en ga naar Profiel.', s2: 'Tik op “Mijn account verwijderen”.', s3: 'Bevestig. Je account wordt meteen verwijderd en je wordt afgemeld.' },
+            mail: { t: '2. Per e-mail, zonder de app', d: 'Mail ons vanaf het e-mailadres van je account met als onderwerp “Account verwijderen”. We behandelen je aanvraag binnen maximaal 30 dagen.', subject: 'Account verwijderen' },
+            notice: { label: 'Let op:', text: 'verwijderen is niet mogelijk zolang je een lopende lening hebt, sluit die eerst af. Verwijderen is definitief en kan niet ongedaan worden gemaakt.' },
+            erased: { title: 'Wat wordt gewist',
+                i1: 'Je voor- en achternaam (vervangen door “Deleted user”)',
+                i2: 'Je e-mailadres en je inlogaccount',
+                i3: 'Je verbindingscode en je status van identiteitsverificatie',
+                i4: 'Je contacten',
+                i5: 'Je openstaande leningaanvragen (ze worden geannuleerd)' },
+            kept: { title: 'Wat bewaard blijft',
+                intro: 'DueMate legt een afspraak tussen twee mensen vast. Zodat de andere partij een overzicht houdt van wat is afgesproken, blijven sommige gegevens bewaard:',
+                i1: 'Leningen en hun pdf-documenten, die beschikbaar blijven voor de andere partij',
+                i2: 'Afgesloten leningaanvragen',
+                i3: 'De historiek van je aanvaarding van de gebruiksvoorwaarden',
+                outro: 'Deze gegevens zijn niet meer gekoppeld aan een actief account. Meer details in ons', link: 'privacybeleid.' },
+            footer: { question: 'Vragen?' }
+        }
+    };
+
+    const get = (obj, path) => path.split('.').reduce((o, k) => (o ? o[k] : undefined), obj);
+    let lang = 'en';
+
+    function detectLang() {
+        try { const saved = localStorage.getItem('duemate.lang'); if (COPY[saved]) return saved; } catch (e) {}
+        const prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'en'];
+        for (const p of prefs) { const code = String(p).slice(0, 2).toLowerCase(); if (COPY[code]) return code; }
+        return 'en';
+    }
+
+    function setLang(next) {
+        lang = COPY[next] ? next : 'en';
+        const c = COPY[lang];
+        document.documentElement.lang = lang;
+        document.title = c.meta.title;
+        document.querySelector('meta[name="description"]').setAttribute('content', c.meta.description);
+        document.querySelectorAll('[data-i18n]').forEach(el => { const v = get(c, el.dataset.i18n); if (v != null) el.textContent = v; });
+        document.getElementById('mailto').href = 'mailto:privacy@duemate.be?subject=' + encodeURIComponent(c.mail.subject);
+        document.querySelectorAll('#lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+        try { localStorage.setItem('duemate.lang', lang); } catch (e) {}
+    }
+
+    document.getElementById('lang').addEventListener('click', e => {
+        const b = e.target.closest('button[data-lang]'); if (b) setLang(b.dataset.lang);
+    });
+
+    const header = document.querySelector('header.site');
+    addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 8), { passive: true });
+    document.getElementById('year').textContent = new Date().getFullYear();
+    setLang(detectLang());
+</script>
+</body>
+</html>

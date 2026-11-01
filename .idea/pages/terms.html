@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DueMate — Conditions générales d'utilisation</title>
+    <meta name="description" content="Les règles d'utilisation de DueMate.">
+    <meta name="theme-color" content="#F5F6F8" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0B1420" media="(prefers-color-scheme: dark)">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <style>
+        :root{
+            --navy:#0F2C4C; --navy-2:#1D4570;
+            --bg:#F5F6F8; --surface:#FFFFFF; --border:#E7EBF0; --tint:#EAF0F6;
+            --text:#17314F; --muted:#5B6E86; --link:#1D4570; --accent:#FF6B4A;
+            color-scheme:light dark;
+        }
+        @media (prefers-color-scheme: dark){
+            :root{
+                --bg:#0B1420; --surface:#16212F; --border:#29394D; --tint:#1C2B3D;
+                --text:#E6ECF3; --muted:#93A6BD; --link:#9FB8D4;
+            }
+        }
+        *{box-sizing:border-box;margin:0;padding:0}
+        html{-webkit-text-size-adjust:100%}
+        body{
+            font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+            background:var(--bg);color:var(--text);line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased;
+        }
+        a{color:var(--link);text-underline-offset:2px}
+        a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+        /* Header identique à la page d'accueil */
+        header.site{position:sticky;top:0;z-index:10;background:color-mix(in oklab,var(--bg) 88%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+        header.site.scrolled{border-bottom-color:var(--border)}
+        .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px;max-width:1120px;margin:0 auto;padding:0 20px}
+        .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em;text-decoration:none;color:var(--text)}
+        .mark{width:30px;height:30px;border-radius:9px;background:var(--navy);position:relative;flex:none}
+        .mark::before,.mark::after{content:"";position:absolute;top:9px;width:12px;height:12px;border-radius:50%;border:2px solid #fff}
+        .mark::before{left:5px}.mark::after{right:5px;border-color:#9FB8D4}
+        @media (prefers-color-scheme:dark){.mark{background:var(--navy-2)}}
+        .lang{display:flex;gap:2px;padding:3px;border:1px solid var(--border);border-radius:999px;background:var(--surface)}
+        .lang button{font:inherit;font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--muted);background:none;border:0;border-radius:999px;padding:5px 11px;min-height:32px;cursor:pointer;transition:background .15s,color .15s}
+        .lang button:hover{color:var(--text)}
+        .lang button[aria-pressed="true"]{background:var(--tint);color:var(--text)}
+
+        /* Une seule langue visible à la fois */
+        .content{display:none}
+        html[lang="fr"] .content[data-content="fr"],
+        html[lang="nl"] .content[data-content="nl"],
+        html[lang="en"] .content[data-content="en"]{display:block}
+
+        main{max-width:44rem;margin:0 auto;padding:2.5rem 1.25rem 3rem}
+        h1{font-size:1.9rem;line-height:1.2;font-weight:800;letter-spacing:-.01em}
+        .meta{margin-top:.5rem;color:var(--muted);font-size:.92rem}
+        h2{font-size:1.2rem;line-height:1.3;font-weight:800;margin-top:2.4rem}
+        p{margin-top:.8rem}
+        ul{margin-top:.8rem;padding-left:1.2rem}
+        li{margin-top:.45rem}
+        strong{font-weight:700}
+
+        footer{max-width:44rem;margin:0 auto;padding:1.5rem 1.25rem 3rem;border-top:1px solid var(--border);color:var(--muted);font-size:.9rem}
+        footer nav{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;margin-bottom:.8rem}
+        footer p{margin-top:0}
+        @media (min-width:640px){.bar{padding:0 32px}}
+    </style>
+</head>
+<body>
+<header class="site" id="top">
+    <div class="bar">
+        <a class="brand" href="/" aria-label="DueMate"><span class="mark" aria-hidden="true"></span>DueMate</a>
+        <nav class="lang" aria-label="Language" id="lang">
+            <button type="button" data-lang="fr" lang="fr">FR</button>
+            <button type="button" data-lang="nl" lang="nl">NL</button>
+            <button type="button" data-lang="en" lang="en">EN</button>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <!-- ======================= FRANÇAIS ======================= -->
+    <div class="content" data-content="fr" lang="fr">
+        <h1>Conditions générales d'utilisation</h1>
+        <p class="meta">Version 1 · Dernière mise à jour : 13/10/2026</p>
+
+        <h2>Éditeur et acceptation</h2>
+        <p>L'application DueMate et le site duemate.be sont édités par la société OL Solutions SRL/BV, établie à Anvers et inscrite à la Banque-Carrefour des Entreprises sous le numéro BE0797.737.601, ci-après « DueMate ».</p>
+        <p>En créant un compte, vous acceptez les présentes conditions. Si vous ne les acceptez pas, n'utilisez pas le service.</p>
+        <p>DueMate est réservé aux personnes âgées d'au moins 18 ans.</p>
+
+        <h2>Ce que fait DueMate</h2>
+        <p>DueMate permet à deux personnes qui se connaissent de consigner un prêt entre elles et de le faire confirmer par les deux parties.</p>
+        <p>Le prêteur propose un prêt à un contact : montant, mode de remise (cash ou virement), type de remboursement et date limite. L'emprunteur le confirme, le conteste ou le refuse. Une fois confirmé, DueMate enregistre le prêt, calcule les échéances, permet à chacun de déclarer et de confirmer les remboursements, et génère un document PDF qui reprend l'accord.</p>
+
+        <h2>Ce que DueMate ne fait pas</h2>
+        <p>DueMate est un outil de documentation, pas un prêteur ni un intermédiaire financier.</p>
+        <ul>
+            <li>DueMate ne prête pas d'argent et n'est pas partie aux prêts conclus entre utilisateurs.</li>
+            <li>DueMate ne reçoit, ne transfère et ne conserve aucun fonds, et ne traite aucun paiement. Les remises d'argent se font entre les utilisateurs, en dehors de l'application.</li>
+            <li>DueMate n'est pas une banque, un établissement de crédit ou de paiement, et ne fournit aucun conseil juridique, fiscal ou financier.</li>
+            <li>DueMate ne garantit pas qu'un prêt sera remboursé et n'intervient pas pour en obtenir le remboursement.</li>
+            <li>DueMate ne vérifie pas que les montants ou les remboursements déclarés correspondent à une remise d'argent réelle.</li>
+        </ul>
+
+        <h2>Votre compte et vos contacts</h2>
+        <p>Pour utiliser DueMate, vous créez un compte avec une adresse email, un mot de passe, votre prénom et votre nom, puis vous confirmez votre adresse par le lien reçu par email. Vous n'avez droit qu'à un compte personnel.</p>
+        <p>Vous êtes responsable de la confidentialité de votre mot de passe et de l'usage qui est fait de votre compte. Prévenez-nous sans délai si vous pensez que quelqu'un y a accédé sans votre accord.</p>
+        <p>Chaque utilisateur dispose d'un code de connexion personnel. Quiconque connaît ce code peut vous envoyer une demande de contact, que vous êtes libre d'accepter ou de refuser. Un prêt ne peut être proposé qu'entre deux contacts qui ont accepté de se connecter.</p>
+
+        <h2>Proposer, confirmer et contester un prêt</h2>
+        <p>Seul le prêteur peut créer une proposition, et uniquement à un contact accepté. Elle reste sans effet tant que l'emprunteur ne l'a pas confirmée.</p>
+        <ul>
+            <li><strong>Confirmation</strong> : l'emprunteur indique qu'il a pris connaissance des conditions affichées et qu'il est d'accord. Pour éviter une confirmation par erreur, il doit retaper le montant. Le prêt est alors enregistré.</li>
+            <li><strong>Contestation</strong> : l'emprunteur peut contester la proposition en expliquant ce qui ne correspond pas. Le prêteur peut alors modifier les conditions, maintenir sa position avec un message, ou annuler.</li>
+            <li><strong>Refus et annulation</strong> : l'emprunteur peut refuser une proposition. Le prêteur peut annuler une proposition tant qu'elle n'est pas confirmée.</li>
+        </ul>
+        <p>Un prêt confirmé ne peut plus être modifié ni annulé dans l'application. Ses échéances sont ensuite suivies ainsi : l'emprunteur déclare un remboursement, et le prêteur le confirme quand il a bien reçu l'argent.</p>
+
+        <h2>Le document PDF</h2>
+        <p>Le document PDF atteste qu'un accord de prêt a été confirmé par les deux parties dans DueMate, à la date indiquée.</p>
+        <p>Il est généré à la confirmation du prêt et reprend les noms déclarés, le montant, le mode de remise, le type de remboursement et la date de confirmation. Il est rédigé dans la langue de chaque partie, avec une page par langue si elles diffèrent.</p>
+        <p>Ce document n'est ni un acte authentique ni une signature électronique qualifiée. DueMate ne garantit pas qu'un juge ou un tiers l'acceptera comme preuve, ni qu'il permettra d'obtenir le remboursement.</p>
+        <p>Vous accédez au document depuis l'écran du prêt, par un lien temporaire. Nous vous conseillons d'en télécharger et d'en conserver une copie : si vous supprimez votre compte, vous n'aurez plus accès à vos documents dans l'application.</p>
+
+        <h2>Noms déclarés et identité</h2>
+        <p>DueMate ne vérifie l'identité de personne. Les noms qui figurent sur un prêt et sur son document sont ceux que le prêteur déclare pour lui-même et pour l'emprunteur au moment de la proposition.</p>
+        <p>Le prêteur est donc responsable de l'exactitude de ces noms. Il doit y indiquer le vrai nom complet des deux parties, et non un pseudonyme.</p>
+        <p>L'emprunteur voit les deux noms avant de confirmer. Si le nom déclaré pour lui est faux ou ne correspond pas à la personne avec qui il traite, il doit contester ou refuser la proposition, et ne pas la confirmer.</p>
+
+        <h2>Vos engagements</h2>
+        <p>En utilisant DueMate, vous vous engagez à :</p>
+        <ul>
+            <li>fournir des informations exactes : noms, montants, dates, remboursements ;</li>
+            <li>n'utiliser le service que pour de vrais prêts entre particuliers, et jamais pour une activité de crédit à titre professionnel ;</li>
+            <li>ne pas créer de faux compte, ni vous faire passer pour quelqu'un d'autre ;</li>
+            <li>ne pas envoyer de demandes de contact non sollicitées, ni harceler d'autres utilisateurs ;</li>
+            <li>ne pas contourner les protections du service, extraire ses données en masse, ni le perturber, y compris avec des outils automatisés ;</li>
+            <li>respecter la loi, y compris vos obligations légales et fiscales liées aux prêts que vous concluez.</li>
+        </ul>
+
+        <h2>Responsabilité</h2>
+        <p>Les prêts se concluent entre utilisateurs, et DueMate n'y est pas partie. Les désaccords entre un prêteur et un emprunteur se règlent entre eux.</p>
+        <p>Nous faisons de notre mieux pour que le service soit disponible et exact, mais nous ne pouvons pas garantir qu'il fonctionne sans interruption ni erreur.</p>
+        <p>Dans les limites permises par la loi, DueMate n'est pas responsable :</p>
+        <ul>
+            <li>d'un prêt qui n'est pas remboursé, ou d'un remboursement déclaré à tort ;</li>
+            <li>des informations inexactes données par un utilisateur, notamment les noms déclarés ;</li>
+            <li>d'une indisponibilité temporaire du service.</li>
+        </ul>
+        <p>Rien dans ces conditions n'exclut une responsabilité qui ne peut pas l'être selon la loi, notamment en cas de faute intentionnelle, ni ne prive un consommateur des droits que la loi lui reconnaît.</p>
+
+        <h2>Suspension et suppression du compte</h2>
+        <p>Vous pouvez supprimer votre compte à tout moment, dans l'application (<strong>Profil</strong>, puis <strong>Supprimer mon compte</strong>) ou en écrivant à <a href="mailto:privacy@duemate.be">privacy@duemate.be</a>. La procédure est détaillée sur la page <a href="/delete-account">Supprimer mon compte</a>.</p>
+        <p>La suppression est impossible tant qu'un prêt est actif, c'est-à-dire pas encore entièrement remboursé : vous devez d'abord le clôturer. Elle est définitive et ne peut pas être annulée.</p>
+        <p>Les prêts que vous partagez avec une autre personne sont conservés pour elle, comme l'explique notre <a href="/privacy">politique de confidentialité</a>, y compris les noms déclarés et le document PDF. Après la suppression, vous n'avez plus accès à ces documents dans l'application.</p>
+        <p>Nous pouvons suspendre ou supprimer un compte en cas de violation de ces conditions, de fraude ou d'usage abusif. Nous vous avertissons au préalable lorsque c'est possible, et sans délai lorsque la sécurité du service ou des autres utilisateurs l'exige.</p>
+
+        <h2>Propriété intellectuelle</h2>
+        <p>L'application, son code, son design, le nom DueMate et son logo appartiennent à OL Solutions ou à ses concédants. Ces conditions vous donnent seulement le droit personnel, non exclusif et non transmissible d'utiliser le service.</p>
+        <p>Les informations que vous saisissez dans DueMate restent les vôtres. Vous nous autorisez à les traiter uniquement pour faire fonctionner le service, comme l'explique la <a href="/privacy">politique de confidentialité</a>.</p>
+
+        <h2>Modifications et contact</h2>
+        <p>Nous pouvons modifier ces conditions, par exemple quand nous ajoutons une fonction. En cas de changement important, nous vous prévenons dans l'application ou par email avant son entrée en vigueur. Si vous continuez à utiliser DueMate après cette date, vous acceptez les nouvelles conditions. Si vous ne les acceptez pas, vous pouvez supprimer votre compte.</p>
+        <p>Pour toute question : <a href="mailto:privacy@duemate.be">privacy@duemate.be</a>, ou par courrier à OL Solutions, Anvers, Belgique.</p>
+
+        <h2>Droit applicable et litiges</h2>
+        <p>Ces conditions sont soumises au droit belge. En cas de litige avec DueMate, écrivez-nous d'abord pour chercher une solution amiable.</p>
+        <p>À défaut, les tribunaux belges compétents sont saisis (ceux de l'arrondissement d'Anvers, où se trouve le siège de la société), sans préjudice des règles impératives qui permettent à un consommateur de saisir le tribunal de son domicile.</p>
+    </div>
+
+    <!-- ======================= NEDERLANDS ======================= -->
+    <div class="content" data-content="nl" lang="nl">
+        <h1>Algemene gebruiksvoorwaarden</h1>
+        <p class="meta">Versie 1 · Laatst bijgewerkt: 13/10/2026</p>
+
+        <h2>Uitgever en aanvaarding</h2>
+        <p>De DueMate-app en de website duemate.be worden uitgegeven door de vennootschap OL Solutions SRL/BV, gevestigd te Antwerpen en ingeschreven in de Kruispuntbank van Ondernemingen onder nummer BE0797.737.601, hierna “DueMate”.</p>
+        <p>Door een account aan te maken aanvaard je deze voorwaarden. Als je ze niet aanvaardt, gebruik de dienst dan niet.</p>
+        <p>DueMate is bestemd voor personen van minstens 18 jaar.</p>
+
+        <h2>Wat DueMate doet</h2>
+        <p>DueMate laat twee mensen die elkaar kennen een lening tussen hen vastleggen en door beide partijen laten bevestigen.</p>
+        <p>De uitlener stelt een lening voor aan een contact: bedrag, wijze van overhandiging (cash of overschrijving), type terugbetaling en uiterste datum. De ontlener bevestigt, betwist of weigert het voorstel. Na bevestiging registreert DueMate de lening, berekent de termijnen, laat iedereen de terugbetalingen melden en bevestigen, en maakt een pdf-document aan dat de afspraak weergeeft.</p>
+
+        <h2>Wat DueMate niet doet</h2>
+        <p>DueMate is een hulpmiddel om vast te leggen, geen uitlener en geen financiële tussenpersoon.</p>
+        <ul>
+            <li>DueMate leent geen geld uit en is geen partij bij de leningen tussen gebruikers.</li>
+            <li>DueMate ontvangt, verstuurt of bewaart geen geld en verwerkt geen betalingen. Geld wordt tussen de gebruikers overhandigd, buiten de app.</li>
+            <li>DueMate is geen bank, kredietinstelling of betalingsinstelling en geeft geen juridisch, fiscaal of financieel advies.</li>
+            <li>DueMate garandeert niet dat een lening wordt terugbetaald en komt niet tussen om terugbetaling af te dwingen.</li>
+            <li>DueMate controleert niet of de opgegeven bedragen of terugbetalingen overeenstemmen met een echte overdracht van geld.</li>
+        </ul>
+
+        <h2>Je account en je contacten</h2>
+        <p>Om DueMate te gebruiken maak je een account aan met een e-mailadres, een wachtwoord, je voornaam en je achternaam, en bevestig je je adres via de link in de e-mail die je ontvangt. Je hebt recht op één persoonlijke account.</p>
+        <p>Je bent verantwoordelijk voor de vertrouwelijkheid van je wachtwoord en voor het gebruik van je account. Verwittig ons onmiddellijk als je denkt dat iemand zonder jouw toestemming toegang heeft gehad.</p>
+        <p>Elke gebruiker heeft een persoonlijke verbindingscode. Wie die code kent, kan je een contactaanvraag sturen, die je vrij kunt aanvaarden of weigeren. Een lening kan enkel worden voorgesteld tussen twee contacten die ermee hebben ingestemd verbonden te zijn.</p>
+
+        <h2>Een lening voorstellen, bevestigen en betwisten</h2>
+        <p>Enkel de uitlener kan een voorstel doen, en enkel aan een aanvaard contact. Het heeft geen gevolgen zolang de ontlener het niet heeft bevestigd.</p>
+        <ul>
+            <li><strong>Bevestiging</strong>: de ontlener geeft aan dat hij de getoonde voorwaarden heeft gelezen en ermee akkoord gaat. Om een bevestiging per vergissing te vermijden, moet hij het bedrag opnieuw intypen. De lening wordt dan geregistreerd.</li>
+            <li><strong>Betwisting</strong>: de ontlener kan het voorstel betwisten en uitleggen wat niet klopt. De uitlener kan dan de voorwaarden wijzigen, zijn standpunt handhaven met een bericht, of annuleren.</li>
+            <li><strong>Weigering en annulering</strong>: de ontlener kan een voorstel weigeren. De uitlener kan een voorstel annuleren zolang het niet is bevestigd.</li>
+        </ul>
+        <p>Een bevestigde lening kan in de app niet meer worden gewijzigd of geannuleerd. De termijnen worden daarna als volgt opgevolgd: de ontlener meldt een terugbetaling en de uitlener bevestigt die wanneer hij het geld echt heeft ontvangen.</p>
+
+        <h2>Het pdf-document</h2>
+        <p>Het pdf-document bevestigt dat een leningsafspraak door beide partijen in DueMate is bevestigd, op de vermelde datum.</p>
+        <p>Het wordt aangemaakt wanneer de lening wordt bevestigd en bevat de opgegeven namen, het bedrag, de wijze van overhandiging, het type terugbetaling en de datum van bevestiging. Het is opgesteld in de taal van elke partij, met een pagina per taal als die verschillen.</p>
+        <p>Dit document is geen authentieke akte en geen gekwalificeerde elektronische handtekening. DueMate garandeert niet dat een rechter of een derde het als bewijs zal aanvaarden, noch dat het terugbetaling zal opleveren.</p>
+        <p>Je opent het document vanaf het scherm van de lening, via een tijdelijke link. We raden je aan er een kopie van te downloaden en te bewaren: als je je account verwijdert, heb je in de app geen toegang meer tot je documenten.</p>
+
+        <h2>Opgegeven namen en identiteit</h2>
+        <p>DueMate controleert niemands identiteit. De namen op een lening en op het bijbehorende document zijn die welke de uitlener op het moment van het voorstel opgeeft voor zichzelf en voor de ontlener.</p>
+        <p>De uitlener is dus verantwoordelijk voor de juistheid van die namen. Hij moet de echte volledige naam van beide partijen invullen, geen schuilnaam.</p>
+        <p>De ontlener ziet beide namen voordat hij bevestigt. Als de voor hem opgegeven naam fout is of niet overeenkomt met de persoon met wie hij te maken heeft, moet hij het voorstel betwisten of weigeren en niet bevestigen.</p>
+
+        <h2>Je verbintenissen</h2>
+        <p>Door DueMate te gebruiken verbind je je ertoe:</p>
+        <ul>
+            <li>juiste gegevens te verstrekken: namen, bedragen, data, terugbetalingen;</li>
+            <li>de dienst enkel te gebruiken voor echte leningen tussen particulieren, en nooit voor kredietverlening als beroepsactiviteit;</li>
+            <li>geen valse account aan te maken en je niet voor iemand anders uit te geven;</li>
+            <li>geen ongevraagde contactaanvragen te sturen en andere gebruikers niet lastig te vallen;</li>
+            <li>de beveiliging van de dienst niet te omzeilen, de gegevens niet massaal uit te lezen en de dienst niet te verstoren, ook niet met geautomatiseerde tools;</li>
+            <li>de wet na te leven, met inbegrip van je wettelijke en fiscale verplichtingen met betrekking tot de leningen die je afsluit.</li>
+        </ul>
+
+        <h2>Aansprakelijkheid</h2>
+        <p>Leningen worden tussen gebruikers afgesloten en DueMate is er geen partij bij. Meningsverschillen tussen een uitlener en een ontlener worden onderling geregeld.</p>
+        <p>We doen ons best om de dienst beschikbaar en juist te houden, maar we kunnen niet garanderen dat ze zonder onderbreking of fouten werkt.</p>
+        <p>Binnen de grenzen van de wet is DueMate niet aansprakelijk voor:</p>
+        <ul>
+            <li>een lening die niet wordt terugbetaald, of een ten onrechte gemelde terugbetaling;</li>
+            <li>onjuiste informatie van een gebruiker, met name de opgegeven namen;</li>
+            <li>een tijdelijke onbeschikbaarheid van de dienst.</li>
+        </ul>
+        <p>Niets in deze voorwaarden sluit een aansprakelijkheid uit die volgens de wet niet kan worden uitgesloten, met name bij opzettelijke fout, en niets ontneemt een consument de rechten die de wet hem toekent.</p>
+
+        <h2>Opschorting en verwijdering van de account</h2>
+        <p>Je kunt je account op elk moment verwijderen, in de app (<strong>Profiel</strong>, daarna <strong>Mijn account verwijderen</strong>) of door te mailen naar <a href="mailto:privacy@duemate.be">privacy@duemate.be</a>. De procedure staat op de pagina <a href="/delete-account">Mijn account verwijderen</a>.</p>
+        <p>Verwijderen is niet mogelijk zolang een lening actief is, dat wil zeggen nog niet volledig terugbetaald: je moet die eerst afsluiten. Verwijderen is definitief en kan niet ongedaan worden gemaakt.</p>
+        <p>De leningen die je met een andere persoon deelt, worden voor die persoon bewaard, zoals uitgelegd in ons <a href="/privacy">privacybeleid</a>, met inbegrip van de opgegeven namen en het pdf-document. Na de verwijdering heb je in de app geen toegang meer tot die documenten.</p>
+        <p>We kunnen een account opschorten of verwijderen bij schending van deze voorwaarden, fraude of misbruik. We verwittigen je vooraf wanneer dat mogelijk is, en onmiddellijk wanneer de veiligheid van de dienst of van andere gebruikers het vereist.</p>
+
+        <h2>Intellectuele eigendom</h2>
+        <p>De app, de code, het ontwerp, de naam DueMate en het logo zijn eigendom van OL Solutions of van haar licentiegevers. Deze voorwaarden geven je enkel het persoonlijke, niet-exclusieve en niet-overdraagbare recht om de dienst te gebruiken.</p>
+        <p>De informatie die je in DueMate invoert, blijft van jou. Je geeft ons de toestemming ze uitsluitend te verwerken om de dienst te laten werken, zoals uitgelegd in het <a href="/privacy">privacybeleid</a>.</p>
+
+        <h2>Wijzigingen en contact</h2>
+        <p>We kunnen deze voorwaarden wijzigen, bijvoorbeeld wanneer we een functie toevoegen. Bij een belangrijke wijziging verwittigen we je in de app of per e-mail voor ze van kracht wordt. Als je DueMate na die datum blijft gebruiken, aanvaard je de nieuwe voorwaarden. Als je ze niet aanvaardt, kun je je account verwijderen.</p>
+        <p>Voor vragen: <a href="mailto:privacy@duemate.be">privacy@duemate.be</a>, of per post naar OL Solutions, Antwerpen, België.</p>
+
+        <h2>Toepasselijk recht en geschillen</h2>
+        <p>Deze voorwaarden zijn onderworpen aan het Belgische recht. Bij een geschil met DueMate schrijf je ons eerst om een minnelijke oplossing te zoeken.</p>
+        <p>Bij gebreke daarvan worden de bevoegde Belgische rechtbanken geadieerd (die van het arrondissement Antwerpen, waar de zetel van de vennootschap is gevestigd), onverminderd de dwingende regels die een consument toelaten de rechtbank van zijn woonplaats te adiëren.</p>
+    </div>
+
+    <!-- ======================= ENGLISH ======================= -->
+    <div class="content" data-content="en" lang="en">
+        <h1>Terms of use</h1>
+        <p class="meta">Version 1 · Last updated: 13 October 2026</p>
+
+        <h2>Publisher and acceptance</h2>
+        <p>The DueMate app and the duemate.be website are published by OL Solutions SRL/BV, based in Antwerp and registered with the Crossroads Bank for Enterprises under number BE0797.737.601, hereinafter “DueMate”.</p>
+        <p>By creating an account, you accept these terms. If you do not accept them, do not use the service.</p>
+        <p>DueMate is intended for people aged 18 or over.</p>
+
+        <h2>What DueMate does</h2>
+        <p>DueMate lets two people who know each other record a loan between them and have it confirmed by both parties.</p>
+        <p>The lender proposes a loan to a contact: amount, how the money is handed over (cash or bank transfer), repayment type and due date. The borrower confirms, disputes or declines it. Once confirmed, DueMate records the loan, calculates the instalments, lets each party declare and confirm repayments, and generates a PDF document setting out the agreement.</p>
+
+        <h2>What DueMate does not do</h2>
+        <p>DueMate is a documentation tool, not a lender or a financial intermediary.</p>
+        <ul>
+            <li>DueMate does not lend money and is not a party to loans made between users.</li>
+            <li>DueMate does not receive, transfer or hold any funds, and does not process any payment. Money changes hands between the users, outside the app.</li>
+            <li>DueMate is not a bank, a credit institution or a payment institution, and gives no legal, tax or financial advice.</li>
+            <li>DueMate does not guarantee that a loan will be repaid and does not intervene to obtain repayment.</li>
+            <li>DueMate does not verify that the declared amounts or repayments correspond to a real handover of money.</li>
+        </ul>
+
+        <h2>Your account and your contacts</h2>
+        <p>To use DueMate, you create an account with an email address, a password, your first name and your last name, then confirm your address through the link you receive by email. You are entitled to one personal account only.</p>
+        <p>You are responsible for keeping your password confidential and for how your account is used. Tell us without delay if you think someone has accessed it without your consent.</p>
+        <p>Each user has a personal connect code. Anyone who knows this code can send you a contact request, which you are free to accept or decline. A loan can only be proposed between two contacts who have agreed to connect.</p>
+
+        <h2>Proposing, confirming and disputing a loan</h2>
+        <p>Only the lender can create a proposal, and only to an accepted contact. It has no effect until the borrower has confirmed it.</p>
+        <ul>
+            <li><strong>Confirmation</strong>: the borrower states that they have read the terms shown and agree to them. To avoid confirming by mistake, they must retype the amount. The loan is then recorded.</li>
+            <li><strong>Dispute</strong>: the borrower can dispute the proposal by explaining what does not match. The lender can then change the terms, maintain their position with a message, or cancel.</li>
+            <li><strong>Declining and cancelling</strong>: the borrower can decline a proposal. The lender can cancel a proposal as long as it has not been confirmed.</li>
+        </ul>
+        <p>A confirmed loan can no longer be changed or cancelled in the app. Its instalments are then followed as follows: the borrower declares a repayment, and the lender confirms it once they have actually received the money.</p>
+
+        <h2>The PDF document</h2>
+        <p>The PDF document certifies that a loan agreement was confirmed by both parties in DueMate, on the date shown.</p>
+        <p>It is generated when the loan is confirmed and contains the declared names, the amount, how the money was handed over, the repayment type and the confirmation date. It is written in each party's language, with one page per language if they differ.</p>
+        <p>This document is neither an authentic deed nor a qualified electronic signature. DueMate does not guarantee that a judge or a third party will accept it as evidence, nor that it will lead to repayment.</p>
+        <p>You access the document from the loan screen, through a temporary link. We advise you to download and keep a copy: if you delete your account, you will no longer have access to your documents in the app.</p>
+
+        <h2>Declared names and identity</h2>
+        <p>DueMate does not verify anyone's identity. The names on a loan and on its document are those the lender declares for themselves and for the borrower at the time of the proposal.</p>
+        <p>The lender is therefore responsible for the accuracy of these names. They must enter the real full name of both parties, not a pseudonym.</p>
+        <p>The borrower sees both names before confirming. If the name declared for them is wrong or does not match the person they are dealing with, they must dispute or decline the proposal and not confirm it.</p>
+
+        <h2>Your commitments</h2>
+        <p>By using DueMate, you agree to:</p>
+        <ul>
+            <li>provide accurate information: names, amounts, dates, repayments;</li>
+            <li>use the service only for genuine loans between private individuals, and never for professional lending activity;</li>
+            <li>not create a fake account or impersonate someone else;</li>
+            <li>not send unsolicited contact requests or harass other users;</li>
+            <li>not circumvent the service's protections, extract its data in bulk or disrupt it, including with automated tools;</li>
+            <li>comply with the law, including your legal and tax obligations relating to the loans you make.</li>
+        </ul>
+
+        <h2>Liability</h2>
+        <p>Loans are made between users, and DueMate is not a party to them. Disagreements between a lender and a borrower are settled between them.</p>
+        <p>We do our best to keep the service available and accurate, but we cannot guarantee that it will work without interruption or error.</p>
+        <p>To the extent permitted by law, DueMate is not liable for:</p>
+        <ul>
+            <li>a loan that is not repaid, or a repayment declared in error;</li>
+            <li>inaccurate information given by a user, in particular the declared names;</li>
+            <li>temporary unavailability of the service.</li>
+        </ul>
+        <p>Nothing in these terms excludes a liability that cannot be excluded by law, in particular in the case of wilful misconduct, nor deprives a consumer of the rights the law gives them.</p>
+
+        <h2>Suspension and deletion of the account</h2>
+        <p>You can delete your account at any time, in the app (<strong>Profile</strong>, then <strong>Delete my account</strong>) or by writing to <a href="mailto:privacy@duemate.be">privacy@duemate.be</a>. The procedure is described on the <a href="/delete-account">Delete my account</a> page.</p>
+        <p>Deletion is not possible while a loan is active, that is, not yet fully repaid: you must close it first. Deletion is permanent and cannot be undone.</p>
+        <p>Loans you share with another person are kept for them, as explained in our <a href="/privacy">privacy policy</a>, including the declared names and the PDF document. After deletion, you no longer have access to these documents in the app.</p>
+        <p>We may suspend or delete an account in the event of a breach of these terms, fraud or abuse. We warn you beforehand where possible, and without delay where the security of the service or of other users requires it.</p>
+
+        <h2>Intellectual property</h2>
+        <p>The app, its code, its design, the DueMate name and its logo belong to OL Solutions or its licensors. These terms only give you the personal, non-exclusive and non-transferable right to use the service.</p>
+        <p>The information you enter in DueMate remains yours. You authorise us to process it solely to make the service work, as explained in the <a href="/privacy">privacy policy</a>.</p>
+
+        <h2>Changes and contact</h2>
+        <p>We may change these terms, for example when we add a feature. In the event of a significant change, we notify you in the app or by email before it takes effect. If you keep using DueMate after that date, you accept the new terms. If you do not accept them, you can delete your account.</p>
+        <p>For any question: <a href="mailto:privacy@duemate.be">privacy@duemate.be</a>, or by post to OL Solutions, Antwerp, Belgium.</p>
+
+        <h2>Governing law and disputes</h2>
+        <p>These terms are governed by Belgian law. In the event of a dispute with DueMate, please write to us first to seek an amicable solution.</p>
+        <p>Failing that, the competent Belgian courts will hear the case (those of the Antwerp district, where the company's registered office is located), without prejudice to the mandatory rules that allow a consumer to bring proceedings before the court of their place of residence.</p>
+    </div>
+
+</main>
+
+<footer>
+    <div class="content" data-content="fr" lang="fr">
+        <nav aria-label="Pages légales">
+            <a href="/privacy">Politique de confidentialité</a>
+            <a href="/delete-account">Supprimer mon compte</a>
+            <a href="/">Retour à duemate.be</a>
+        </nav>
+    </div>
+    <div class="content" data-content="nl" lang="nl">
+        <nav aria-label="Juridische pagina's">
+            <a href="/privacy">Privacybeleid</a>
+            <a href="/delete-account">Mijn account verwijderen</a>
+            <a href="/">Terug naar duemate.be</a>
+        </nav>
+    </div>
+    <div class="content" data-content="en" lang="en">
+        <nav aria-label="Legal pages">
+            <a href="/privacy">Privacy policy</a>
+            <a href="/delete-account">Delete my account</a>
+            <a href="/">Back to duemate.be</a>
+        </nav>
+    </div>
+    <p>OL Solutions · BE0797.737.601 · Antwerp, Belgium</p>
+</footer>
+
+<script>
+    const META = {
+        fr: { title: 'DueMate — Conditions générales d\'utilisation', description: 'Les règles d\'utilisation de DueMate.' },
+        nl: { title: 'DueMate — Algemene gebruiksvoorwaarden', description: 'De gebruiksregels van DueMate.' },
+        en: { title: 'DueMate — Terms of use', description: 'The rules for using DueMate.' }
+    };
+
+    function detectLang() {
+        try { const saved = localStorage.getItem('duemate.lang'); if (META[saved]) return saved; } catch (e) {}
+        const prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'fr'];
+        for (const p of prefs) { const code = String(p).slice(0, 2).toLowerCase(); if (META[code]) return code; }
+        return 'fr';
+    }
+
+    function setLang(next) {
+        const lang = META[next] ? next : 'fr';
+        document.documentElement.lang = lang;
+        document.title = META[lang].title;
+        document.querySelector('meta[name="description"]').setAttribute('content', META[lang].description);
+        document.querySelectorAll('#lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+        try { localStorage.setItem('duemate.lang', lang); } catch (e) {}
+    }
+
+    document.getElementById('lang').addEventListener('click', e => {
+        const b = e.target.closest('button[data-lang]'); if (b) { setLang(b.dataset.lang); scrollTo({ top: 0 }); }
+    });
+
+    const header = document.querySelector('header.site');
+    addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 8), { passive: true });
+    setLang(detectLang());
+</script>
+</body>
+</html>

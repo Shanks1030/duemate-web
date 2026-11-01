@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DueMate — Politique de confidentialité</title>
+    <meta name="description" content="Comment DueMate traite vos données personnelles.">
+    <meta name="theme-color" content="#F5F6F8" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0B1420" media="(prefers-color-scheme: dark)">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <style>
+        :root{
+            --navy:#0F2C4C; --navy-2:#1D4570;
+            --bg:#F5F6F8; --surface:#FFFFFF; --border:#E7EBF0; --tint:#EAF0F6;
+            --text:#17314F; --muted:#5B6E86; --link:#1D4570; --accent:#FF6B4A;
+            color-scheme:light dark;
+        }
+        @media (prefers-color-scheme: dark){
+            :root{
+                --bg:#0B1420; --surface:#16212F; --border:#29394D; --tint:#1C2B3D;
+                --text:#E6ECF3; --muted:#93A6BD; --link:#9FB8D4;
+            }
+        }
+        *{box-sizing:border-box;margin:0;padding:0}
+        html{-webkit-text-size-adjust:100%}
+        body{
+            font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+            background:var(--bg);color:var(--text);line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased;
+        }
+        a{color:var(--link);text-underline-offset:2px}
+        a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+        /* Header identique à la page d'accueil */
+        header.site{position:sticky;top:0;z-index:10;background:color-mix(in oklab,var(--bg) 88%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+        header.site.scrolled{border-bottom-color:var(--border)}
+        .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px;max-width:1120px;margin:0 auto;padding:0 20px}
+        .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em;text-decoration:none;color:var(--text)}
+        .mark{width:30px;height:30px;border-radius:9px;background:var(--navy);position:relative;flex:none}
+        .mark::before,.mark::after{content:"";position:absolute;top:9px;width:12px;height:12px;border-radius:50%;border:2px solid #fff}
+        .mark::before{left:5px}.mark::after{right:5px;border-color:#9FB8D4}
+        @media (prefers-color-scheme:dark){.mark{background:var(--navy-2)}}
+        .lang{display:flex;gap:2px;padding:3px;border:1px solid var(--border);border-radius:999px;background:var(--surface)}
+        .lang button{font:inherit;font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--muted);background:none;border:0;border-radius:999px;padding:5px 11px;min-height:32px;cursor:pointer;transition:background .15s,color .15s}
+        .lang button:hover{color:var(--text)}
+        .lang button[aria-pressed="true"]{background:var(--tint);color:var(--text)}
+
+        /* Une seule langue visible à la fois */
+        .content{display:none}
+        html[lang="fr"] .content[data-content="fr"],
+        html[lang="nl"] .content[data-content="nl"],
+        html[lang="en"] .content[data-content="en"]{display:block}
+
+        main{max-width:44rem;margin:0 auto;padding:2.5rem 1.25rem 3rem}
+        h1{font-size:1.9rem;line-height:1.2;font-weight:800;letter-spacing:-.01em}
+        .meta{margin-top:.5rem;color:var(--muted);font-size:.92rem}
+        h2{font-size:1.2rem;line-height:1.3;font-weight:800;margin-top:2.4rem}
+        p{margin-top:.8rem}
+        ul{margin-top:.8rem;padding-left:1.2rem}
+        li{margin-top:.45rem}
+        strong{font-weight:700}
+
+        .table-wrap{margin-top:1rem;overflow-x:auto;background:var(--surface);border:1px solid var(--border);border-radius:12px}
+        table{width:100%;border-collapse:collapse;font-size:.92rem}
+        th,td{text-align:left;vertical-align:top;padding:.65rem .85rem;border-bottom:1px solid var(--border)}
+        th{font-weight:700;color:var(--muted);white-space:nowrap}
+        tr:last-child td{border-bottom:0}
+
+        footer{max-width:44rem;margin:0 auto;padding:1.5rem 1.25rem 3rem;border-top:1px solid var(--border);color:var(--muted);font-size:.9rem}
+        footer nav{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;margin-bottom:.8rem}
+        footer p{margin-top:0}
+        @media (min-width:640px){.bar{padding:0 32px}}
+    </style>
+</head>
+<body>
+<header class="site" id="top">
+    <div class="bar">
+        <a class="brand" href="/" aria-label="DueMate"><span class="mark" aria-hidden="true"></span>DueMate</a>
+        <nav class="lang" aria-label="Language" id="lang">
+            <button type="button" data-lang="fr" lang="fr">FR</button>
+            <button type="button" data-lang="nl" lang="nl">NL</button>
+            <button type="button" data-lang="en" lang="en">EN</button>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <!-- ======================= FRANÇAIS ======================= -->
+    <div class="content" data-content="fr" lang="fr">
+        <h1>Politique de confidentialité</h1>
+        <p class="meta">Version 2 · Dernière mise à jour : 13/10/2026</p>
+
+        <h2>Responsable du traitement</h2>
+        <p>La société OL Solutions SRL, établie à Anvers et inscrite à la Banque-Carrefour des Entreprises sous le numéro BE0797.737.601, est responsable du traitement de vos données personnelles dans l'application DueMate et sur le site duemate.be.</p>
+        <p>Pour toute question sur vos données, écrivez à <a href="mailto:privacy@duemate.be">privacy@duemate.be</a>.</p>
+
+        <h2>Données que nous traitons</h2>
+        <p>Nous traitons uniquement les données nécessaires pour documenter un prêt entre deux personnes qui se connaissent.</p>
+        <ul>
+            <li><strong>Compte</strong> : adresse email, mot de passe (conservé sous forme chiffrée par le service d'authentification, nous n'y avons pas accès en clair), prénom, nom et langue de l'application.</li>
+            <li><strong>Code de connexion</strong> : le code personnel que vous partagez pour qu'une personne puisse vous ajouter en contact.</li>
+            <li><strong>Contacts</strong> : les liens entre deux utilisateurs (demande, acceptation, dates).</li>
+            <li><strong>Propositions et prêts</strong> : montant, devise, mode de remise (cash ou virement), type et durée de remboursement, date limite, statut, échéances, et les noms que le prêteur déclare pour lui-même et pour l'emprunteur.</li>
+            <li><strong>Messages</strong> : le texte que vous écrivez en contestant, refusant, annulant ou répondant à une proposition.</li>
+            <li><strong>Documents</strong> : le PDF généré lorsqu'un prêt est confirmé, avec les informations ci-dessus.</li>
+            <li><strong>Acceptation des conditions</strong> : la version des conditions d'utilisation que vous avez acceptée et la date de cette acceptation.</li>
+            <li><strong>Données techniques</strong> : adresse IP, type de requête et jetons de session, utilisés pour la sécurité et pour limiter les abus.</li>
+            <li><strong>Liste d'attente (site web)</strong> : adresse email et langue, si vous vous inscrivez.</li>
+        </ul>
+        <p>DueMate ne collecte ni numéro de compte bancaire ni donnée de paiement, et ne vérifie pas votre identité : les noms affichés dans un document sont ceux déclarés par les utilisateurs.</p>
+
+        <h2>Pourquoi nous utilisons ces données</h2>
+        <p>Chaque usage repose sur l'une des bases légales prévues par l'article 6 du RGPD.</p>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr><th>Finalité</th><th>Données concernées</th><th>Base légale</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>Créer votre compte et vous connecter</td><td>Compte, session</td><td>Exécution du contrat</td></tr>
+                <tr><td>Proposer, confirmer, contester et suivre un prêt, et générer le document</td><td>Contacts, prêts, messages, documents</td><td>Exécution du contrat</td></tr>
+                <tr><td>Envoyer les emails liés au compte (confirmation, mot de passe oublié)</td><td>Adresse email</td><td>Exécution du contrat</td></tr>
+                <tr><td>Pouvoir prouver que vous avez accepté les conditions d'utilisation</td><td>Acceptation des conditions</td><td>Intérêt légitime</td></tr>
+                <tr><td>Sécuriser le service et limiter les abus</td><td>Données techniques</td><td>Intérêt légitime</td></tr>
+                <tr><td>Respecter nos obligations légales</td><td>Selon la demande</td><td>Obligation légale</td></tr>
+                <tr><td>Vous prévenir du lancement (liste d'attente)</td><td>Adresse email, langue</td><td>Consentement, retirable à tout moment</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Avec qui nous partageons vos données</h2>
+        <p>Nous ne vendons pas vos données et n'affichons aucune publicité. Elles sont accessibles à l'autre personne concernée par un prêt, à nos prestataires techniques et, si la loi l'exige, aux autorités.</p>
+        <p><strong>L'autre partie.</strong> Le prêteur et l'emprunteur voient les informations du prêt qui les concerne : montants, conditions, noms déclarés, messages et document PDF.</p>
+        <p><strong>Nos prestataires</strong> traitent des données pour notre compte, selon nos instructions :</p>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr><th>Prestataire</th><th>Rôle</th><th>Localisation</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>Supabase</td><td>Base de données et authentification (compte, contacts, prêts, messages)</td><td>Union européenne (Francfort)</td></tr>
+                <tr><td>OVHcloud</td><td>Serveur de l'application et stockage des documents PDF</td><td>France (Gravelines)</td></tr>
+                <tr><td>Resend</td><td>Envoi des emails du compte (confirmation, mot de passe oublié)</td><td>États-Unis, voir ci-dessous</td></tr>
+                <tr><td>Cloudflare</td><td>Gestion du nom de domaine duemate.be</td><td>Mondiale</td></tr>
+                <tr><td>Microsoft</td><td>Messagerie de contact : les emails que vous nous écrivez</td><td>Royaume-Uni, voir ci-dessous</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Transferts hors de l'Union européenne</h2>
+        <p>Certains prestataires sont établis hors de l'Union européenne : Resend aux États-Unis et la messagerie Microsoft au Royaume-Uni. Dans ce cas, le transfert repose sur une décision d'adéquation de la Commission européenne (par exemple le cadre de protection des données UE–États-Unis, ou la décision concernant le Royaume-Uni) ou, à défaut, sur les clauses contractuelles types de la Commission.</p>
+        <p>Vous pouvez demander une copie de ces garanties en écrivant à l'adresse de contact ci-dessus.</p>
+
+        <h2>Combien de temps nous les conservons</h2>
+        <p>Nous gardons vos données le temps nécessaire à chaque finalité, puis nous les supprimons ou les anonymisons.</p>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr><th>Données</th><th>Durée de conservation</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>Compte (email, nom, langue, code de connexion) et contacts</td><td>Jusqu'à la suppression du compte, puis effacement ou anonymisation immédiats depuis l'application (30 jours au plus si la demande est faite par email)</td></tr>
+                <tr><td>Prêts, échéances, messages et documents PDF</td><td>6 mois après la dernière échéance, y compris après la suppression de votre compte</td></tr>
+                <tr><td>Propositions refusées, annulées ou clôturées sans prêt</td><td>6 mois après leur clôture, y compris après la suppression de votre compte</td></tr>
+                <tr><td>Historique d'acceptation des conditions</td><td>Pendant la durée du compte, puis 6 mois après sa suppression</td></tr>
+                <tr><td>Données techniques et journaux serveur</td><td>Au plus six mois, puis suppression</td></tr>
+                <tr><td>Liste d'attente</td><td>Jusqu'au lancement ou au retrait de votre consentement, au plus 12 mois</td></tr>
+                <tr><td>Emails que vous nous écrivez</td><td>1 an</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Suppression de votre compte</h2>
+        <p>Vous pouvez supprimer votre compte à tout moment : dans l'application (<strong>Profil</strong>, puis <strong>Supprimer mon compte</strong>) ou par email à <a href="mailto:privacy@duemate.be">privacy@duemate.be</a>. La procédure est détaillée sur la page <a href="/delete-account">Supprimer mon compte</a>. La suppression est impossible tant qu'un prêt est actif, et elle est définitive.</p>
+        <p><strong>Ce qui est effacé ou anonymisé :</strong> votre nom et votre prénom (remplacés par « Deleted user »), votre adresse email, votre compte de connexion, votre code de connexion, votre statut de vérification d'identité et vos contacts. Vos propositions de prêt en attente sont annulées.</p>
+        <p><strong>Ce qui est conservé :</strong> les prêts, leurs messages et leurs documents PDF, ainsi que les propositions clôturées, car l'autre partie doit pouvoir conserver la preuve de ce qui a été convenu. Les noms déclarés dans un prêt et dans son document PDF restent donc visibles pour l'autre partie. Nous conservons aussi l'historique de votre acceptation des conditions d'utilisation. Ces données ne sont plus rattachées à un compte utilisable et sont conservées pendant les durées indiquées ci-dessus.</p>
+
+        <h2>Vos droits</h2>
+        <p>Vous pouvez exercer à tout moment les droits suivants sur vos données :</p>
+        <ul>
+            <li><strong>Accès</strong> : savoir quelles données nous avons sur vous et en obtenir une copie.</li>
+            <li><strong>Rectification</strong> : faire corriger une donnée inexacte.</li>
+            <li><strong>Effacement</strong> : demander la suppression de vos données, ou supprimer vous-même votre compte (voir ci-dessus).</li>
+            <li><strong>Limitation</strong> : demander que nous suspendions leur utilisation.</li>
+            <li><strong>Portabilité</strong> : recevoir vos données dans un format structuré.</li>
+            <li><strong>Opposition</strong> : vous opposer à un traitement fondé sur notre intérêt légitime.</li>
+            <li><strong>Retrait du consentement</strong> : pour la liste d'attente, sans effet sur ce qui a eu lieu avant.</li>
+        </ul>
+        <p>Pour les exercer, écrivez à l'adresse de contact ci-dessus. Nous répondons dans un délai d'un mois et pouvons vous demander de prouver votre identité avant de communiquer des données.</p>
+        <p>Certains droits peuvent être limités, par exemple lorsque l'effacement priverait l'autre partie de la preuve d'un prêt confirmé, ou lorsque la loi nous oblige à conserver une donnée.</p>
+        <p><strong>Réclamation.</strong> Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire une réclamation auprès de l'Autorité de protection des données, Rue de la Presse 35, 1000 Bruxelles, <a href="mailto:contact@apd-gba.be">contact@apd-gba.be</a>, <a href="https://www.autoriteprotectiondonnees.be" rel="noopener">autoriteprotectiondonnees.be</a>. L'Autorité recommande de vous adresser d'abord au responsable du traitement.</p>
+
+        <h2>Sécurité</h2>
+        <p>Nous protégeons vos données par des mesures techniques adaptées, sans prétendre qu'aucun système n'est infaillible.</p>
+        <ul>
+            <li>Les échanges entre l'application et nos serveurs sont chiffrés (HTTPS).</li>
+            <li>Votre mot de passe est géré par le service d'authentification et n'est jamais stocké en clair.</li>
+            <li>Chaque requête à notre serveur exige une session valide, et vous n'accédez qu'aux prêts auxquels vous participez.</li>
+            <li>Les documents PDF sont stockés dans un espace privé et ne sont accessibles que par des liens temporaires, valables 15 minutes.</li>
+            <li>Le nombre de requêtes est limité pour freiner les abus.</li>
+        </ul>
+        <p>En cas de violation de données susceptible de présenter un risque pour vous, nous la notifions à l'Autorité de protection des données dans les 72 heures et, si le risque est élevé, nous vous en informons directement.</p>
+
+        <h2>Âge minimum</h2>
+        <p>DueMate est réservé aux personnes âgées d'au moins 18 ans. Nous ne collectons pas sciemment de données de personnes plus jeunes, et nous supprimons tout compte dont nous apprenons qu'il appartient à une personne de moins de 18 ans.</p>
+
+        <h2>Site web, cookies et ressources externes</h2>
+        <p>Nous n'utilisons ni cookie publicitaire ni outil de mesure d'audience. L'application garde votre session sur votre appareil pour que vous n'ayez pas à vous reconnecter à chaque ouverture.</p>
+        <p>Certaines pages de duemate.be chargent des ressources hébergées par des tiers : la police de caractères depuis Google Fonts et une bibliothèque depuis esm.sh. Votre navigateur leur transmet alors votre adresse IP. Le site mémorise dans votre navigateur la langue que vous choisissez.</p>
+
+        <h2>Modifications et contact</h2>
+        <p>Nous pouvons mettre cette politique à jour, par exemple quand nous ajoutons une fonction ou changeons de prestataire. En cas de changement important, nous vous en informons dans l'application ou par email avant son entrée en vigueur. La date de la dernière mise à jour figure en haut de cette page.</p>
+        <p>Questions, demandes d'accès ou de suppression : <a href="mailto:privacy@duemate.be">privacy@duemate.be</a>, ou par courrier à OL Solutions, Anvers, Belgique.</p>
+    </div>
+
+    <!-- ======================= NEDERLANDS ======================= -->
+    <div class="content" data-content="nl" lang="nl">
+        <h1>Privacybeleid</h1>
+        <p class="meta">Versie 2 · Laatst bijgewerkt: 13/10/2026</p>
+
+        <h2>Verwerkingsverantwoordelijke</h2>
+        <p>De vennootschap OL Solutions SRL, gevestigd te Antwerpen en ingeschreven in de Kruispuntbank van Ondernemingen onder nummer BE0797.737.601, is verantwoordelijk voor de verwerking van je persoonsgegevens in de DueMate-app en op de website duemate.be.</p>
+        <p>Voor vragen over je gegevens kun je mailen naar <a href="mailto:privacy@duemate.be">privacy@duemate.be</a>.</p>
+
+        <h2>Gegevens die we verwerken</h2>
+        <p>We verwerken enkel de gegevens die nodig zijn om een lening tussen twee mensen die elkaar kennen vast te leggen.</p>
+        <ul>
+            <li><strong>Account</strong>: e-mailadres, wachtwoord (versleuteld bewaard door de authenticatiedienst, wij hebben er geen leesbare toegang toe), voornaam, achternaam en taal van de app.</li>
+            <li><strong>Verbindingscode</strong>: de persoonlijke code die je deelt zodat iemand je als contact kan toevoegen.</li>
+            <li><strong>Contacten</strong>: de verbanden tussen twee gebruikers (aanvraag, aanvaarding, data).</li>
+            <li><strong>Voorstellen en leningen</strong>: bedrag, munt, wijze van overhandiging (cash of overschrijving), type en looptijd van de terugbetaling, uiterste datum, status, termijnen, en de namen die de uitlener opgeeft voor zichzelf en voor de ontlener.</li>
+            <li><strong>Berichten</strong>: de tekst die je schrijft wanneer je een voorstel betwist, weigert, annuleert of erop antwoordt.</li>
+            <li><strong>Documenten</strong>: de pdf die wordt aangemaakt wanneer een lening is bevestigd, met bovenstaande gegevens.</li>
+            <li><strong>Aanvaarding van de voorwaarden</strong>: de versie van de gebruiksvoorwaarden die je hebt aanvaard en de datum van die aanvaarding.</li>
+            <li><strong>Technische gegevens</strong>: IP-adres, type verzoek en sessietokens, gebruikt voor de beveiliging en om misbruik te beperken.</li>
+            <li><strong>Wachtlijst (website)</strong>: e-mailadres en taal, als je je inschrijft.</li>
+        </ul>
+        <p>DueMate verzamelt geen bankrekeningnummers of betaalgegevens en controleert je identiteit niet: de namen in een document zijn die welke de gebruikers hebben opgegeven.</p>
+
+        <h2>Waarom we deze gegevens gebruiken</h2>
+        <p>Elk gebruik steunt op een van de rechtsgronden van artikel 6 van de AVG.</p>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr><th>Doel</th><th>Betrokken gegevens</th><th>Rechtsgrond</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>Je account aanmaken en je laten inloggen</td><td>Account, sessie</td><td>Uitvoering van de overeenkomst</td></tr>
+                <tr><td>Een lening voorstellen, bevestigen, betwisten en opvolgen, en het document aanmaken</td><td>Contacten, leningen, berichten, documenten</td><td>Uitvoering van de overeenkomst</td></tr>
+                <tr><td>E-mails over je account versturen (bevestiging, wachtwoord vergeten)</td><td>E-mailadres</td><td>Uitvoering van de overeenkomst</td></tr>
+                <tr><td>Kunnen aantonen dat je de gebruiksvoorwaarden hebt aanvaard</td><td>Aanvaarding van de voorwaarden</td><td>Gerechtvaardigd belang</td></tr>
+                <tr><td>De dienst beveiligen en misbruik beperken</td><td>Technische gegevens</td><td>Gerechtvaardigd belang</td></tr>
+                <tr><td>Onze wettelijke verplichtingen naleven</td><td>Afhankelijk van de vraag</td><td>Wettelijke verplichting</td></tr>
+                <tr><td>Je verwittigen bij de lancering (wachtlijst)</td><td>E-mailadres, taal</td><td>Toestemming, op elk moment intrekbaar</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Met wie we je gegevens delen</h2>
+        <p>We verkopen je gegevens niet en tonen geen reclame. Ze zijn toegankelijk voor de andere persoon die bij een lening betrokken is, voor onze technische dienstverleners en, als de wet het eist, voor de autoriteiten.</p>
+        <p><strong>De andere partij.</strong> De uitlener en de ontlener zien de gegevens van de lening die hen aanbelangt: bedragen, voorwaarden, opgegeven namen, berichten en het pdf-document.</p>
+        <p><strong>Onze dienstverleners</strong> verwerken gegevens in onze opdracht en volgens onze instructies:</p>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr><th>Dienstverlener</th><th>Rol</th><th>Locatie</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>Supabase</td><td>Database en authenticatie (account, contacten, leningen, berichten)</td><td>Europese Unie (Frankfurt)</td></tr>
+                <tr><td>OVHcloud</td><td>Server van de app en opslag van de pdf-documenten</td><td>Frankrijk (Gravelines)</td></tr>
+                <tr><td>Resend</td><td>Verzending van e-mails over je account (bevestiging, wachtwoord vergeten)</td><td>Verenigde Staten, zie hieronder</td></tr>
+                <tr><td>Cloudflare</td><td>Beheer van de domeinnaam duemate.be</td><td>Wereldwijd</td></tr>
+                <tr><td>Microsoft</td><td>Contactmailbox: de e-mails die je ons stuurt</td><td>Verenigd Koninkrijk, zie hieronder</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Doorgiften buiten de Europese Unie</h2>
+        <p>Sommige dienstverleners zijn gevestigd buiten de Europese Unie: Resend in de Verenigde Staten en de mailbox van Microsoft in het Verenigd Koninkrijk. In dat geval steunt de doorgifte op een adequaatheidsbesluit van de Europese Commissie (bijvoorbeeld het gegevensbeschermingskader EU–VS, of het besluit over het Verenigd Koninkrijk) of, bij gebrek daaraan, op de standaardcontractbepalingen van de Commissie.</p>
+        <p>Je kunt een kopie van deze waarborgen opvragen via het contactadres hierboven.</p>
+
+        <h2>Hoelang we ze bewaren</h2>
+        <p>We bewaren je gegevens zolang als nodig is voor elk doel, en verwijderen of anonimiseren ze daarna.</p>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr><th>Gegevens</th><th>Bewaartermijn</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>Account (e-mail, naam, taal, verbindingscode) en contacten</td><td>Tot de account wordt verwijderd, daarna onmiddellijk gewist of geanonimiseerd vanuit de app (maximaal 30 dagen als je dit per e-mail vraagt)</td></tr>
+                <tr><td>Leningen, termijnen, berichten en pdf-documenten</td><td>6 maanden na de laatste termijn, ook na de verwijdering van je account</td></tr>
+                <tr><td>Voorstellen die zijn geweigerd, geannuleerd of afgesloten zonder lening</td><td>6 maanden na hun afsluiting, ook na de verwijdering van je account</td></tr>
+                <tr><td>Historiek van de aanvaarding van de voorwaarden</td><td>Zolang de account bestaat, daarna 6 maanden na de verwijdering ervan</td></tr>
+                <tr><td>Technische gegevens en serverlogs</td><td>Maximaal zes maanden, daarna verwijdering</td></tr>
+                <tr><td>Wachtlijst</td><td>Tot de lancering of tot je je toestemming intrekt, maximaal 12 maanden</td></tr>
+                <tr><td>E-mails die je ons stuurt</td><td>1 jaar</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Je account verwijderen</h2>
+        <p>Je kunt je account op elk moment verwijderen: in de app (<strong>Profiel</strong>, daarna <strong>Mijn account verwijderen</strong>) of per e-mail naar <a href="mailto:privacy@duemate.be">privacy@duemate.be</a>. De procedure staat op de pagina <a href="/delete-account">Mijn account verwijderen</a>. Verwijderen is niet mogelijk zolang een lening actief is, en het is definitief.</p>
+        <p><strong>Wat wordt gewist of geanonimiseerd:</strong> je voor- en achternaam (vervangen door “Deleted user”), je e-mailadres, je inlogaccount, je verbindingscode, je status van identiteitsverificatie en je contacten. Je openstaande leningvoorstellen worden geannuleerd.</p>
+        <p><strong>Wat bewaard blijft:</strong> de leningen, hun berichten en hun pdf-documenten, evenals de afgesloten voorstellen, omdat de andere partij het bewijs van wat is afgesproken moet kunnen bewaren. De namen die in een lening en in het pdf-document zijn opgegeven, blijven dus zichtbaar voor de andere partij. We bewaren ook de historiek van je aanvaarding van de gebruiksvoorwaarden. Deze gegevens zijn niet meer gekoppeld aan een bruikbare account en worden bewaard gedurende de hierboven vermelde termijnen.</p>
+
+        <h2>Je rechten</h2>
+        <p>Je kunt op elk moment de volgende rechten uitoefenen op je gegevens:</p>
+        <ul>
+            <li><strong>Inzage</strong>: weten welke gegevens we over je hebben en er een kopie van krijgen.</li>
+            <li><strong>Rectificatie</strong>: een onjuist gegeven laten verbeteren.</li>
+            <li><strong>Wissing</strong>: vragen om je gegevens te verwijderen, of zelf je account verwijderen (zie hierboven).</li>
+            <li><strong>Beperking</strong>: vragen dat we het gebruik ervan opschorten.</li>
+            <li><strong>Overdraagbaarheid</strong>: je gegevens ontvangen in een gestructureerd formaat.</li>
+            <li><strong>Bezwaar</strong>: je verzetten tegen een verwerking die steunt op ons gerechtvaardigd belang.</li>
+            <li><strong>Intrekking van de toestemming</strong>: voor de wachtlijst, zonder gevolgen voor wat eerder is gebeurd.</li>
+        </ul>
+        <p>Om ze uit te oefenen, schrijf je naar het contactadres hierboven. We antwoorden binnen een maand en kunnen je vragen je identiteit aan te tonen voordat we gegevens meedelen.</p>
+        <p>Sommige rechten kunnen worden beperkt, bijvoorbeeld wanneer wissing de andere partij het bewijs van een bevestigde lening zou ontnemen, of wanneer de wet ons verplicht een gegeven te bewaren.</p>
+        <p><strong>Klacht.</strong> Als je vindt dat je rechten niet worden gerespecteerd, kun je een klacht indienen bij de Gegevensbeschermingsautoriteit, Drukpersstraat 35, 1000 Brussel, <a href="mailto:contact@apd-gba.be">contact@apd-gba.be</a>, <a href="https://www.gegevensbeschermingsautoriteit.be" rel="noopener">gegevensbeschermingsautoriteit.be</a>. De Autoriteit raadt aan je eerst tot de verwerkingsverantwoordelijke te richten.</p>
+
+        <h2>Beveiliging</h2>
+        <p>We beschermen je gegevens met passende technische maatregelen, zonder te beweren dat een systeem onfeilbaar is.</p>
+        <ul>
+            <li>De communicatie tussen de app en onze servers is versleuteld (HTTPS).</li>
+            <li>Je wachtwoord wordt beheerd door de authenticatiedienst en wordt nooit leesbaar opgeslagen.</li>
+            <li>Elk verzoek aan onze server vereist een geldige sessie, en je hebt enkel toegang tot de leningen waaraan je deelneemt.</li>
+            <li>De pdf-documenten worden in een privéruimte opgeslagen en zijn enkel bereikbaar via tijdelijke links, die 15 minuten geldig zijn.</li>
+            <li>Het aantal verzoeken is beperkt om misbruik tegen te gaan.</li>
+        </ul>
+        <p>Bij een datalek dat een risico voor jou kan inhouden, melden we dit binnen 72 uur aan de Gegevensbeschermingsautoriteit en, als het risico hoog is, informeren we je rechtstreeks.</p>
+
+        <h2>Minimumleeftijd</h2>
+        <p>DueMate is bestemd voor personen van minstens 18 jaar. We verzamelen niet bewust gegevens van jongere personen en verwijderen elke account waarvan we vernemen dat ze toebehoort aan iemand onder de 18.</p>
+
+        <h2>Website, cookies en externe bronnen</h2>
+        <p>We gebruiken geen reclamecookies en geen tools om bezoekersaantallen te meten. De app bewaart je sessie op je toestel zodat je niet telkens opnieuw moet inloggen.</p>
+        <p>Sommige pagina's van duemate.be laden bronnen die door derden worden gehost: het lettertype via Google Fonts en een bibliotheek via esm.sh. Je browser geeft hun dan je IP-adres door. De website onthoudt in je browser de taal die je kiest.</p>
+
+        <h2>Wijzigingen en contact</h2>
+        <p>We kunnen dit beleid bijwerken, bijvoorbeeld wanneer we een functie toevoegen of van dienstverlener veranderen. Bij een belangrijke wijziging informeren we je in de app of per e-mail voor ze van kracht wordt. De datum van de laatste update staat bovenaan deze pagina.</p>
+        <p>Vragen, verzoeken tot inzage of verwijdering: <a href="mailto:privacy@duemate.be">privacy@duemate.be</a>, of per post naar OL Solutions, Antwerpen, België.</p>
+    </div>
+
+    <!-- ======================= ENGLISH ======================= -->
+    <div class="content" data-content="en" lang="en">
+        <h1>Privacy policy</h1>
+        <p class="meta">Version 2 · Last updated: 13 October 2026</p>
+
+        <h2>Data controller</h2>
+        <p>OL Solutions SRL, based in Antwerp and registered with the Crossroads Bank for Enterprises under number BE0797.737.601, is the controller of your personal data in the DueMate app and on the duemate.be website.</p>
+        <p>For any question about your data, write to <a href="mailto:privacy@duemate.be">privacy@duemate.be</a>.</p>
+
+        <h2>Data we process</h2>
+        <p>We only process the data needed to document a loan between two people who know each other.</p>
+        <ul>
+            <li><strong>Account</strong>: email address, password (stored in encrypted form by the authentication service, we cannot read it), first name, last name and app language.</li>
+            <li><strong>Connect code</strong>: the personal code you share so that someone can add you as a contact.</li>
+            <li><strong>Contacts</strong>: the links between two users (request, acceptance, dates).</li>
+            <li><strong>Proposals and loans</strong>: amount, currency, how the money was handed over (cash or bank transfer), repayment type and duration, due date, status, instalments, and the names the lender declares for themselves and for the borrower.</li>
+            <li><strong>Messages</strong>: the text you write when disputing, declining, cancelling or replying to a proposal.</li>
+            <li><strong>Documents</strong>: the PDF generated when a loan is confirmed, containing the information above.</li>
+            <li><strong>Acceptance of the terms</strong>: the version of the terms of use you accepted and the date of acceptance.</li>
+            <li><strong>Technical data</strong>: IP address, request type and session tokens, used for security and to limit abuse.</li>
+            <li><strong>Waiting list (website)</strong>: email address and language, if you sign up.</li>
+        </ul>
+        <p>DueMate does not collect bank account numbers or payment data, and does not verify your identity: the names shown in a document are those declared by the users.</p>
+
+        <h2>Why we use this data</h2>
+        <p>Each use relies on one of the legal bases set out in Article 6 of the GDPR.</p>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr><th>Purpose</th><th>Data concerned</th><th>Legal basis</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>Create your account and sign you in</td><td>Account, session</td><td>Performance of a contract</td></tr>
+                <tr><td>Propose, confirm, dispute and follow a loan, and generate the document</td><td>Contacts, loans, messages, documents</td><td>Performance of a contract</td></tr>
+                <tr><td>Send account-related emails (confirmation, forgotten password)</td><td>Email address</td><td>Performance of a contract</td></tr>
+                <tr><td>Be able to prove that you accepted the terms of use</td><td>Acceptance of the terms</td><td>Legitimate interest</td></tr>
+                <tr><td>Secure the service and limit abuse</td><td>Technical data</td><td>Legitimate interest</td></tr>
+                <tr><td>Comply with our legal obligations</td><td>Depends on the request</td><td>Legal obligation</td></tr>
+                <tr><td>Notify you of the launch (waiting list)</td><td>Email address, language</td><td>Consent, withdrawable at any time</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Who we share your data with</h2>
+        <p>We do not sell your data and we show no advertising. It is accessible to the other person involved in a loan, to our technical providers and, where the law requires it, to the authorities.</p>
+        <p><strong>The other party.</strong> The lender and the borrower see the information about the loan that concerns them: amounts, terms, declared names, messages and the PDF document.</p>
+        <p><strong>Our providers</strong> process data on our behalf and under our instructions:</p>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr><th>Provider</th><th>Role</th><th>Location</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>Supabase</td><td>Database and authentication (account, contacts, loans, messages)</td><td>European Union (Frankfurt)</td></tr>
+                <tr><td>OVHcloud</td><td>Application server and PDF document storage</td><td>France (Gravelines)</td></tr>
+                <tr><td>Resend</td><td>Sending account emails (confirmation, forgotten password)</td><td>United States, see below</td></tr>
+                <tr><td>Cloudflare</td><td>Management of the duemate.be domain name</td><td>Worldwide</td></tr>
+                <tr><td>Microsoft</td><td>Contact mailbox: the emails you write to us</td><td>United Kingdom, see below</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Transfers outside the European Union</h2>
+        <p>Some providers are established outside the European Union: Resend in the United States and the Microsoft mailbox in the United Kingdom. In that case, the transfer relies on an adequacy decision of the European Commission (for example the EU–US data protection framework, or the decision concerning the United Kingdom) or, failing that, on the Commission's standard contractual clauses.</p>
+        <p>You can request a copy of these safeguards by writing to the contact address above.</p>
+
+        <h2>How long we keep it</h2>
+        <p>We keep your data for as long as needed for each purpose, then delete or anonymise it.</p>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr><th>Data</th><th>Retention period</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>Account (email, name, language, connect code) and contacts</td><td>Until the account is deleted, then erased or anonymised immediately from the app (30 days at most if requested by email)</td></tr>
+                <tr><td>Loans, instalments, messages and PDF documents</td><td>6 months after the last instalment, including after your account is deleted</td></tr>
+                <tr><td>Proposals declined, cancelled or closed without a loan</td><td>6 months after they are closed, including after your account is deleted</td></tr>
+                <tr><td>History of acceptance of the terms</td><td>While the account exists, then 6 months after its deletion</td></tr>
+                <tr><td>Technical data and server logs</td><td>Six months at most, then deleted</td></tr>
+                <tr><td>Waiting list</td><td>Until launch or until you withdraw your consent, 12 months at most</td></tr>
+                <tr><td>Emails you write to us</td><td>1 year</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Deleting your account</h2>
+        <p>You can delete your account at any time: in the app (<strong>Profile</strong>, then <strong>Delete my account</strong>) or by email to <a href="mailto:privacy@duemate.be">privacy@duemate.be</a>. The procedure is described on the <a href="/delete-account">Delete my account</a> page. Deletion is not possible while a loan is active, and it is permanent.</p>
+        <p><strong>What is erased or anonymised:</strong> your first and last name (replaced by “Deleted user”), your email address, your sign-in account, your connect code, your identity verification status and your contacts. Your pending loan proposals are cancelled.</p>
+        <p><strong>What is kept:</strong> loans, their messages and their PDF documents, as well as closed proposals, because the other party must be able to keep the proof of what was agreed. The names declared in a loan and in its PDF document therefore remain visible to the other party. We also keep the history of your acceptance of the terms of use. This data is no longer linked to a usable account and is kept for the periods stated above.</p>
+
+        <h2>Your rights</h2>
+        <p>You can exercise the following rights over your data at any time:</p>
+        <ul>
+            <li><strong>Access</strong>: know what data we hold about you and obtain a copy.</li>
+            <li><strong>Rectification</strong>: have inaccurate data corrected.</li>
+            <li><strong>Erasure</strong>: ask for your data to be deleted, or delete your account yourself (see above).</li>
+            <li><strong>Restriction</strong>: ask us to suspend its use.</li>
+            <li><strong>Portability</strong>: receive your data in a structured format.</li>
+            <li><strong>Objection</strong>: object to processing based on our legitimate interest.</li>
+            <li><strong>Withdrawal of consent</strong>: for the waiting list, without affecting what happened before.</li>
+        </ul>
+        <p>To exercise them, write to the contact address above. We reply within one month and may ask you to prove your identity before disclosing data.</p>
+        <p>Some rights may be limited, for example where erasure would deprive the other party of the proof of a confirmed loan, or where the law requires us to keep a piece of data.</p>
+        <p><strong>Complaint.</strong> If you believe your rights are not being respected, you can lodge a complaint with the Data Protection Authority, Rue de la Presse 35, 1000 Brussels, <a href="mailto:contact@apd-gba.be">contact@apd-gba.be</a>, <a href="https://www.dataprotectionauthority.be" rel="noopener">dataprotectionauthority.be</a>. The Authority recommends contacting the data controller first.</p>
+
+        <h2>Security</h2>
+        <p>We protect your data with appropriate technical measures, without claiming that any system is infallible.</p>
+        <ul>
+            <li>Communication between the app and our servers is encrypted (HTTPS).</li>
+            <li>Your password is managed by the authentication service and is never stored in clear text.</li>
+            <li>Every request to our server requires a valid session, and you can only access the loans you take part in.</li>
+            <li>PDF documents are stored in a private space and are only accessible through temporary links, valid for 15 minutes.</li>
+            <li>The number of requests is limited to curb abuse.</li>
+        </ul>
+        <p>In the event of a data breach likely to present a risk to you, we notify the Data Protection Authority within 72 hours and, if the risk is high, we inform you directly.</p>
+
+        <h2>Minimum age</h2>
+        <p>DueMate is intended for people aged 18 or over. We do not knowingly collect data from younger people, and we delete any account that we learn belongs to someone under 18.</p>
+
+        <h2>Website, cookies and external resources</h2>
+        <p>We use no advertising cookies and no audience measurement tools. The app keeps your session on your device so that you do not have to sign in every time you open it.</p>
+        <p>Some pages of duemate.be load resources hosted by third parties: the typeface from Google Fonts and a library from esm.sh. Your browser then sends them your IP address. The website remembers the language you choose in your browser.</p>
+
+        <h2>Changes and contact</h2>
+        <p>We may update this policy, for example when we add a feature or change provider. In the event of a significant change, we inform you in the app or by email before it takes effect. The date of the last update appears at the top of this page.</p>
+        <p>Questions, access or deletion requests: <a href="mailto:privacy@duemate.be">privacy@duemate.be</a></p>
+    </div>
+
+</main>
+
+<footer>
+    <div class="content" data-content="fr" lang="fr">
+        <nav aria-label="Pages légales">
+            <a href="/terms">Conditions d'utilisation</a>
+            <a href="/delete-account">Supprimer mon compte</a>
+            <a href="/">Retour à duemate.be</a>
+        </nav>
+    </div>
+    <div class="content" data-content="nl" lang="nl">
+        <nav aria-label="Juridische pagina's">
+            <a href="/terms">Gebruiksvoorwaarden</a>
+            <a href="/delete-account">Mijn account verwijderen</a>
+            <a href="/">Terug naar duemate.be</a>
+        </nav>
+    </div>
+    <div class="content" data-content="en" lang="en">
+        <nav aria-label="Legal pages">
+            <a href="/terms">Terms of use</a>
+            <a href="/delete-account">Delete my account</a>
+            <a href="/">Back to duemate.be</a>
+        </nav>
+    </div>
+    <p>OL Solutions · BE0797.737.601 · Antwerp, Belgium</p>
+</footer>
+
+<script>
+    const META = {
+        fr: { title: 'DueMate — Politique de confidentialité', description: 'Comment DueMate traite vos données personnelles.' },
+        nl: { title: 'DueMate — Privacybeleid', description: 'Hoe DueMate omgaat met je persoonsgegevens.' },
+        en: { title: 'DueMate — Privacy policy', description: 'How DueMate handles your personal data.' }
+    };
+
+    function detectLang() {
+        try { const saved = localStorage.getItem('duemate.lang'); if (META[saved]) return saved; } catch (e) {}
+        const prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'fr'];
+        for (const p of prefs) { const code = String(p).slice(0, 2).toLowerCase(); if (META[code]) return code; }
+        return 'fr';
+    }
+
+    function setLang(next) {
+        const lang = META[next] ? next : 'fr';
+        document.documentElement.lang = lang;
+        document.title = META[lang].title;
+        document.querySelector('meta[name="description"]').setAttribute('content', META[lang].description);
+        document.querySelectorAll('#lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+        try { localStorage.setItem('duemate.lang', lang); } catch (e) {}
+    }
+
+    document.getElementById('lang').addEventListener('click', e => {
+        const b = e.target.closest('button[data-lang]'); if (b) { setLang(b.dataset.lang); scrollTo({ top: 0 }); }
+    });
+
+    const header = document.querySelector('header.site');
+    addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 8), { passive: true });
+    setLang(detectLang());
+</script>
+</body>
+</html>
