@@ -1,0 +1,12 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["NNY4MF9346.be.duemate"],
+        "components": [
+          { "/": "/reset-password*" }
+        ]
+      }
+    ]
+  }
+}

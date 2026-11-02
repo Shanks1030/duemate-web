@@ -47,11 +47,8 @@
         header.site.scrolled{border-bottom-color:var(--border)}
         .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
         .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em;text-decoration:none;color:var(--text)}
+        .mark{width:30px;height:30px;flex:none}
         .brand:hover{color:var(--text)}
-        .mark{width:30px;height:30px;border-radius:9px;background:var(--navy);position:relative;flex:none}
-        .mark::before,.mark::after{content:"";position:absolute;top:9px;width:12px;height:12px;border-radius:50%;border:2px solid #fff}
-        .mark::before{left:5px}.mark::after{right:5px;border-color:#9FB8D4}
-        @media (prefers-color-scheme:dark){.mark{background:var(--navy-2)}}
         .lang{display:flex;gap:2px;padding:3px;border:1px solid var(--border);border-radius:999px;background:var(--surface)}
         .lang button{font:inherit;font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--muted);background:none;border:0;border-radius:999px;padding:5px 11px;min-height:32px;cursor:pointer;transition:background .15s,color .15s}
         .lang button:hover{color:var(--text)}
@@ -89,7 +86,7 @@
 
 <header class="site" id="top">
     <div class="wrap bar">
-        <a class="brand" href="/" aria-label="DueMate"><span class="mark" aria-hidden="true"></span>DueMate</a>
+        <a class="brand" href="/" aria-label="DueMate"><img class="mark" src="assets/logo.svg" alt="" width="30" height="30">DueMate</a>
         <nav class="lang" aria-label="Language" id="lang">
             <button type="button" data-lang="fr" lang="fr">FR</button>
             <button type="button" data-lang="nl" lang="nl">NL</button>
